@@ -1,0 +1,211 @@
+.footer {
+  background: #F9F9F9;
+  padding: 60px 0 20px;
+  margin-top: 80px;
+}
+
+.footer-content {
+  margin-bottom: 40px;
+}
+
+.footer-section {
+  margin-bottom: 40px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.footer-logo-img {
+  width: 82px;
+  height: 98px;
+  object-fit: contain;
+}
+
+.footer-logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footer-school-name {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.2px;
+  color: #0C101A;
+  margin: 0;
+}
+
+.footer-school-name-en {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+  color: #0C101A;
+  margin: 0;
+}
+
+.footer-contact {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+  letter-spacing: 0.3px;
+  color: #0C101A;
+}
+
+.footer-contact p {
+  margin-bottom: 8px;
+}
+
+.footer-contact a {
+  color: #2BA7E2;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+  color: #0193DC;
+  text-decoration: underline;
+}
+
+.footer-section-title {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.3px;
+  color: #0C101A;
+  margin-bottom: 20px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-link {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.2px;
+  color: #373F41;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #2BA7E2;
+}
+
+.social-media {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #E6E6E7;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: #2BA7E2;
+  border-color: #2BA7E2;
+  transform: translateY(-2px);
+}
+
+.social-link:hover .social-icon {
+  filter: brightness(0) invert(1);
+}
+
+.social-icon {
+  font-size: 16px;
+  transition: filter 0.3s ease;
+}
+
+.footer-divider {
+  width: 100%;
+  height: 4px;
+  background: #2BA7E2;
+  border-radius: 4px;
+  margin: 40px 0 20px;
+}
+
+.footer-copyright {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+  letter-spacing: 0.3px;
+  color: #0C101A;
+  text-align: center;
+}
+
+@media (max-width: 991.98px) {
+  .footer-logo {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .footer-logo-img {
+    width: 60px;
+    height: 72px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 0 20px;
+    margin-top: 40px;
+  }
+  
+  .footer-content {
+    margin-bottom: 30px;
+  }
+  
+  .footer-section {
+    margin-bottom: 30px;
+  }
+  
+  .social-media {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-logo {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .footer-section-title {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  .footer-link {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}

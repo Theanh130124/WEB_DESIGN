@@ -1,0 +1,10 @@
+<svg width="320" height="280" viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="320" height="280" fill="#FFF8E1"/>
+<rect x="40" y="60" width="240" height="160" fill="#FFC107"/>
+<circle cx="100" cy="120" r="20" fill="#FF9800"/>
+<circle cx="160" cy="120" r="20" fill="#FF9800"/>
+<circle cx="220" cy="120" r="20" fill="#FF9800"/>
+<rect x="80" y="160" width="160" height="40" fill="#F57C00"/>
+<text x="160" y="185" font-family="Arial" font-size="10" fill="white" text-anchor="middle">GRADUATION 2025</text>
+<text x="160" y="260" font-family="Arial" font-size="12" fill="#666" text-anchor="middle">Graduation Ceremony</text>
+</svg>
