@@ -2,6 +2,8 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 interface FooterLink {
   label: string;
@@ -50,11 +52,9 @@ const Footer: React.FC<FooterProps> = ({
   ],
   // Cập nhật icon mạng xã hội đẹp hơn
   socialMedia = [
-    { name: 'Facebook', icon: '📘', url: '#' },
-    { name: 'YouTube', icon: '📺', url: '#' },
-    { name: 'LinkedIn', icon: '💼', url: '#' },
-    { name: 'Twitter', icon: '🐦', url: '#' },
-    { name: 'Instagram', icon: '📷', url: '#' }
+    { name: 'Facebook', icon: <FontAwesomeIcon icon={faFacebook} className={styles.socialIcon} />, url: '#' },
+    { name: 'Twitter', icon: <FontAwesomeIcon icon={faTwitter} className={styles.socialIcon} />, url: '#' },
+    { name: 'Instagram', icon: <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />, url: '#' },
   ],
   copyrightText = 'Copyright © 2025 Trường Đại học Mở TP.HCM. All rights reserved. Hosting by Trần Thế Anh & Võ Duy Khang'
 }) => {

@@ -8,7 +8,6 @@
 
 .verticalDivider {
   height: 4px;
-  background: linear-gradient(90deg, #003366, #0066cc);
   margin-bottom: 30px;
 }
 
@@ -73,7 +72,7 @@
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 20px;
-  border-bottom: 2px solid #0066cc;
+  border-bottom: 1px solid #0066cc;
   padding-bottom: 10px;
 }
 
