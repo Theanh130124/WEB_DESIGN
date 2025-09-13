@@ -1,9 +1,10 @@
 import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Navbar, Nav, Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './Header.module.css';
+import styles from './Header.module.css';
 
 interface HeaderProps {
+  backgroundImage?: string;
   logo?: string;
   schoolName?: string;
   schoolNameEn?: string;
@@ -12,10 +13,16 @@ interface HeaderProps {
     path: string;
     active?: boolean;
   }>;
+  coreValuesTitle?: string;
+  coreValuesText?: string;
+  buttonText?: string;
+  buttonLink?: string;
+  overlayOpacity?: number;
 }
 
 const Header: React.FC<HeaderProps> = ({
-  logo = '/logo.png',
+  backgroundImage = '/default/themeheader.jpg',
+  logo = '/default/logo-default.jpg',
   schoolName = 'TRƯỜNG ĐẠI HỌC MỞ TP. HỒ CHÍ MINH',
   schoolNameEn = 'HO CHI MINH CITY OPEN UNIVERSITY',
   navItems = [
@@ -25,43 +32,81 @@ const Header: React.FC<HeaderProps> = ({
     { label: 'Tuyển sinh', path: '/admissions' },
     { label: 'Liên hệ', path: '/contact' },
     { label: 'Tin tức', path: '/news' }
-  ]
+  ],
+  coreValuesTitle = 'GIÁ TRỊ CỐT LÕI',
+  coreValuesText = 'Mở rộng tri thức, Gắn kết thực tiễn, Phục vụ cộng đồng, Chuyên nghiệp, hiệu quả, sáng tạo và thân thiện',
+  buttonText = 'Liên hệ',
+  buttonLink = '/contact',
+  overlayOpacity = 0.7
 }) => {
   return (
-    <div className="header-container">
-      <div className="header-bg">
-        <Container fluid className="px-0">
-          <Navbar expand="lg" className="custom-navbar">
-            <Container>
-              <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
-                <div className="logo-container">
-                  <img src={logo} alt="Logo" className="logo-img" />
-                  <div className="logo-text">
-                    <div className="school-name">{schoolName}</div>
-                    <div className="school-name-en">{schoolNameEn}</div>
-                  </div>
-                </div>
-              </Navbar.Brand>
-              
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
-              <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="ms-auto">
-                  {navItems.map((item, index) => (
-                    <Nav.Link
-                      key={index}
-                      as={Link}
-                      to={item.path}
-                      className={`nav-link ${item.active ? 'active' : ''}`}
-                    >
-                      {item.label}
-                    </Nav.Link>
-                  ))}
-                </Nav>
-              </Navbar.Collapse>
-            </Container>
+    <div className={styles.headerSection}>
+      {/* Background image with overlay */}
+      <div 
+        className={styles.headerBackground}
+        style={{
+          backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, ${overlayOpacity}), rgba(0, 0, 0, ${overlayOpacity})), url(${backgroundImage})`
+        }}
+      ></div>
+      
+      {/* Navigation */}
+      <div className={styles.headerNavigation}>
+        <Container>
+          <Navbar expand="lg" className={styles.headerNavbar}>
+            <Navbar.Brand className={styles.headerBrand}>
+              <img 
+                src={logo} 
+                alt="Logo" 
+                className={styles.headerLogo}
+              />
+              <div className={styles.headerSchoolNames}>
+                <div className={styles.headerSchoolName}>{schoolName}</div>
+                <div className={styles.headerSchoolNameEn}>{schoolNameEn}</div>
+              </div>
+            </Navbar.Brand>
+            
+            <Navbar.Toggle aria-controls="basic-navbar-nav" className={styles.headerNavToggle} />
+            
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className={`ms-auto ${styles.headerNavLinks}`}>
+                {navItems.map((item, index) => (
+                  <Nav.Link
+                    key={index}
+                    as={Link}
+                    to={item.path}
+                    className={`${styles.headerNavLink} ${item.active ? styles.active : ''}`}
+                  >
+                    {item.label}
+                    {item.active && <div className={styles.navIndicator}></div>}
+                  </Nav.Link>
+                ))}
+              </Nav>
+            </Navbar.Collapse>
           </Navbar>
         </Container>
       </div>
+      
+      {/* Header Content */}
+      <Container className={styles.headerContentContainer}>
+        <Row>
+          <Col lg={6}>
+            <div className={styles.coreValuesSection}>
+              <div className={styles.coreValuesTitle}>
+                {coreValuesTitle}
+              </div>
+              <div className={styles.coreValuesText}>
+                {coreValuesText}
+              </div>
+              <Button 
+                href={buttonLink}
+                className={styles.headerContactButton}
+              >
+                {buttonText}
+              </Button>
+            </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };

@@ -1,46 +1,57 @@
-.header-container {
+.headerSection {
   position: relative;
   width: 100%;
-  height: 88px;
-  z-index: 1000;
+  height: 528px;
+  overflow: hidden;
 }
 
-.header-bg {
+.headerBackground {
   position: absolute;
   width: 100%;
-  height: 88px;
-  background: #3C64B1;
-  z-index: 1;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
 }
 
-.custom-navbar {
-  background: transparent !important;
-  padding: 0;
-  height: 88px;
-  z-index: 2;
+.headerNavigation {
   position: relative;
+  width: 100%;
+  height: 88px;
+  background: transparent;
 }
 
-.logo-container {
-  display: flex;
+.headerNavbar {
+  padding: 16px 0;
+  height: 100%;
+}
+
+.headerBrand {
+  padding: 0;
+  margin: 0;
+  height: 56px;
+  display: flex !important;
   align-items: center;
   gap: 16px;
 }
 
-.logo-img {
+.headerLogo {
   width: 56px;
   height: 56px;
   object-fit: contain;
 }
 
-.logo-text {
+.headerSchoolNames {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.school-name {
+.headerSchoolName {
   font-family: 'Open Sans', sans-serif;
+  font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 18px;
@@ -49,8 +60,9 @@
   margin: 0;
 }
 
-.school-name-en {
+.headerSchoolNameEn {
   font-family: 'Open Sans', sans-serif;
+  font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
@@ -59,64 +71,184 @@
   margin: 0;
 }
 
-.nav-link {
+.headerNavToggle {
+  border: none;
+  color: white;
+}
+
+.headerNavToggle:focus {
+  box-shadow: none;
+}
+
+.headerNavLinks {
+  gap: 32px;
+}
+
+.headerNavLink {
   font-family: 'Open Sans', sans-serif;
+  font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
   letter-spacing: 0.2px;
   color: #CECDCD !important;
-  padding: 0 16px !important;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-  color: #FFFFFF !important;
-}
-
-.nav-link.active {
-  font-weight: 700;
-  color: #FFFFFF !important;
+  padding: 0 !important;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-.nav-link.active::after {
+/* Hiệu ứng hover cho tất cả các mục */
+.headerNavLinks:hover .headerNavLink.active .navIndicator {
+  opacity: 0; /* Ẩn gạch dưới của mục active khi hover vào menu */
+}
+
+.headerNavLink:hover {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+.headerNavLink:hover::after {
   content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
   width: 16px;
   height: 2px;
   background: #FFFFFF;
   border-radius: 4px;
+  margin-top: 8px;
 }
 
-.navbar-toggler {
-  border: none;
-  padding: 4px 8px;
+.headerNavLink.active {
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
 }
 
-.navbar-toggler:focus {
-  box-shadow: none;
+.navIndicator {
+  width: 16px;
+  height: 2px;
+  background: #FFFFFF;
+  border-radius: 4px;
+  margin-top: 8px;
+  transition: opacity 0.3s ease;
 }
 
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+.headerContentContainer {
+  position: relative;
+  height: calc(528px - 88px);
+  display: flex;
+  align-items: center;
 }
 
+.coreValuesSection {
+  padding-top: 40px;
+}
+
+.coreValuesTitle {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  opacity: 0.6;
+  margin-bottom: 24px;
+}
+
+.coreValuesText {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 40px;
+  letter-spacing: 0.2px;
+  color: #FFFFFF;
+  margin-bottom: 40px;
+  max-width: 703px;
+}
+
+.headerContactButton {
+  width: 145px;
+  height: 40px;
+  background: #0193DC !important;
+  border: none !important;
+  border-radius: 4px !important;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.3px;
+  color: #FFFFFF !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerContactButton:hover {
+  background: #0180c5 !important;
+}
+
+/* Responsive adjustments */
 @media (max-width: 991.98px) {
-  .logo-text {
+  .headerNavLinks {
+    gap: 16px;
+    padding: 16px 0;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    margin-top: 16px;
+  }
+  
+  .headerNavLink {
+    padding: 8px 16px !important;
+  }
+  
+  .coreValuesText {
+    font-size: 20px;
+    line-height: 32px;
+  }
+  
+  .headerSchoolNames {
     display: none;
   }
   
-  .nav-link {
-    padding: 8px 0 !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  /* Điều chỉnh cho mobile */
+  .headerNavLinks:hover .headerNavLink.active .navIndicator {
+    opacity: 1; /* Trên mobile, giữ nguyên trạng thái */
+  }
+}
+
+@media (max-width: 768px) {
+  .headerSection {
+    height: 450px;
   }
   
-  .nav-link.active::after {
-    display: none;
+  .coreValuesSection {
+    padding-top: 20px;
+  }
+  
+  .coreValuesText {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+@media (max-width: 576px) {
+  .headerSection {
+    height: 400px;
+  }
+  
+  .coreValuesText {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  .headerContactButton {
+    width: 130px;
+    height: 36px;
+    font-size: 13px;
   }
 }

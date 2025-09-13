@@ -20,6 +20,10 @@ interface AboutSectionProps {
   principalMessage?: string;
   principalDescription?: string;
   principalImage?: string;
+  principalImageSize?: {
+    width: string;
+    height: string;
+  };
 }
 
 const AboutSection: React.FC<AboutSectionProps> = ({
@@ -33,6 +37,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({
   principalMessage = 'Lời chúc mừng kỷ niệm 35 năm thành lập Trường Đại học Mở Thành phố Hồ Chí Minh',
   principalDescription = 'Từ quy mô ban đầu chỉ với 02 khoa và 13 cán bộ, đến nay Trường Đại học Mở TP.HCM đã phát triển thành một cơ sở giáo dục đa ngành với 13 khoa, 03 trung tâm đào tạo và hơn 850 cán bộ viên chức, người lao động, trong đó hơn 40% có trình độ tiến sĩ trở lên. Bên cạnh đó, hệ thống đào tạo từ xa và vừa học vừa làm đã phủ rộng hơn 40 tỉnh, thành từ Bình Định đến Cà Mau.',
   principalImage = '/principal.jpg',
+  principalImageSize = { width: '100%', height: '342px' },
   infoCards = [
     {
       icon: '🏢', //xem lại icon
@@ -68,6 +73,10 @@ const AboutSection: React.FC<AboutSectionProps> = ({
                   src={principalImage} 
                   alt="Principal" 
                   className="principal-image"
+                  style={{
+                    width: principalImageSize.width,
+                    height: principalImageSize.height
+                  }}
                 />
                 <div className="video-overlay">
                   <div className="play-button">▶</div>

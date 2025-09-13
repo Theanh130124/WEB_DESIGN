@@ -1,3 +1,6 @@
+
+// Các thay đổi ở theme
+
 export interface ThemeConfig {
   colors: {
     primary: string;
@@ -18,6 +21,24 @@ export interface ThemeConfig {
     heroBackground: string;
     principalImage: string;
     galleryImages: string[];
+  };
+  imageSizes: {
+    logo: {
+      width: string;
+      height: string;
+    };
+    heroBackground: {
+      width: string;
+      height: string;
+    };
+    principalImage: {
+      width: string;
+      height: string;
+    };
+    galleryImage: {
+      width: string;
+      height: string;
+    };
   };
   content: {
     schoolName: string;
@@ -62,17 +83,35 @@ export const defaultTheme: ThemeConfig = {
     secondary: 'Arial, sans-serif'
   },
   images: {
-    logo: '/logo.svg',
-    heroBackground: '/hero-bg.svg',
-    principalImage: '/principal.svg',
+    logo: 'default/logo-default.jpg',
+    heroBackground: 'default/themeheader.jpg',
+    principalImage: '/principal.jpg',
     galleryImages: [
-      '/gallery/school-building-1.svg',
-      '/gallery/school-building-2.svg',
-      '/gallery/graduation-ceremony.svg',
-      '/gallery/students-studying.svg',
-      '/gallery/computer-lab.svg',
-      '/gallery/classroom.svg'
+      '/gallery/school-building-1.jpg',
+      '/gallery/school-building-2.jpg',
+      '/gallery/graduation-ceremony.jpg',
+      '/gallery/students-studying.jpg',
+      '/gallery/computer-lab.jpg',
+      '/gallery/classroom.jpg'
     ]
+  },
+  imageSizes: {
+    logo: {
+      width: '56px',
+      height: '56px'
+    },
+    heroBackground: {
+      width: '100%',
+      height: '528px'
+    },
+    principalImage: {
+      width: '100%',
+      height: '342px'
+    },
+    galleryImage: {
+      width: '100%',
+      height: '280px'
+    }
   },
   content: {
     schoolName: 'TRƯỜNG ĐẠI HỌC MỞ TP. HỒ CHÍ MINH',
@@ -183,6 +222,10 @@ export const mergeTheme = (partialTheme: Partial<ThemeConfig>): ThemeConfig => {
       ...defaultTheme.images,
       ...partialTheme.images
     },
+    imageSizes: {
+      ...defaultTheme.imageSizes,
+      ...partialTheme.imageSizes
+    },
     content: {
       ...defaultTheme.content,
       ...partialTheme.content,
@@ -197,6 +240,7 @@ export const mergeTheme = (partialTheme: Partial<ThemeConfig>): ThemeConfig => {
     }
   };
 };
+
 
 export const applyTheme = (theme: ThemeConfig | Partial<ThemeConfig>) => {
   const root = document.documentElement;

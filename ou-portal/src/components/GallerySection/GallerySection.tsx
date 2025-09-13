@@ -13,6 +13,10 @@ interface GallerySectionProps {
   images?: GalleryImage[];
   buttonText?: string;
   buttonLink?: string;
+  imageSize?: {
+    width: string;
+    height: string;
+  };
 }
 
 const GallerySection: React.FC<GallerySectionProps> = ({
@@ -50,7 +54,8 @@ const GallerySection: React.FC<GallerySectionProps> = ({
     }
   ],
   buttonText = 'Xem thêm',
-  buttonLink = '/gallery'
+  buttonLink = '/gallery',
+  imageSize = { width: '100%', height: '280px' }
 }) => {
   return (
     <div className="gallery-section">
@@ -74,6 +79,10 @@ const GallerySection: React.FC<GallerySectionProps> = ({
                     alt={image.alt}
                     className="gallery-image"
                     loading="lazy"
+                    style={{
+                      width: imageSize.width,
+                      height: imageSize.height
+                    }}
                   />
                   <div className="image-overlay">
                     <div className="image-title">
