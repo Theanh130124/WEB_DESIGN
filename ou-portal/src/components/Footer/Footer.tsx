@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './Footer.module.css';
+import styles from './Footer.module.css';
 
 interface FooterLink {
   label: string;
@@ -29,7 +29,7 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({
-  logo = '/logo.png',
+  logo = '/default/logo-default.jpg', // Sửa đường dẫn để đồng bộ với Header
   schoolName = 'TRƯỜNG ĐẠI HỌC MỞ TP. HỒ CHÍ MINH',
   schoolNameEn = 'HO CHI MINH CITY OPEN UNIVERSITY',
   address = '97 Võ Văn Tần, Phường 6, Quận 3, TP. Hồ Chí Minh',
@@ -48,26 +48,34 @@ const Footer: React.FC<FooterProps> = ({
     { label: 'Cơ sở vật chất', path: '/facilities' },
     { label: 'Liên hệ', path: '/contact' }
   ],
+  // Cập nhật icon mạng xã hội đẹp hơn
   socialMedia = [
-    { name: 'Twitter', icon: '🐦', url: '#' },  //xem lại icon
     { name: 'Facebook', icon: '📘', url: '#' },
+    { name: 'YouTube', icon: '📺', url: '#' },
+    { name: 'LinkedIn', icon: '💼', url: '#' },
+    { name: 'Twitter', icon: '🐦', url: '#' },
     { name: 'Instagram', icon: '📷', url: '#' }
   ],
   copyrightText = 'Copyright © 2025 Trường Đại học Mở TP.HCM. All rights reserved. Hosting by Trần Thế Anh & Võ Duy Khang'
 }) => {
   return (
-    <footer className="footer">
+    <footer className={styles.footer}>
+      <div className={styles.verticalDivider}></div>
       <Container>
-        <Row className="footer-content">
-          <Col lg={4} className="footer-section">
-            <div className="footer-logo">
-              <img src={logo} alt="Logo" className="footer-logo-img" />
-              <div className="footer-logo-text">
-                <div className="footer-school-name">{schoolName}</div>
-                <div className="footer-school-name-en">{schoolNameEn}</div>
+        <Row className={styles.footerContent}>
+          <Col lg={4} className={styles.footerSection}>
+            <div className={styles.footerLogoSection}>
+              <img 
+                src={logo} 
+                alt="Logo" 
+                className={styles.footerLogo}
+              />
+              <div className={styles.footerSchoolNames}>
+                <div className={styles.footerSchoolName}>{schoolName}</div>
+                <div className={styles.footerSchoolNameEn}>{schoolNameEn}</div>
               </div>
             </div>
-            <div className="footer-contact">
+            <div className={styles.footerContact}>
               <p><strong>Địa chỉ:</strong> {address}</p>
               <p><strong>Số điện thoại:</strong> {phone}</p>
               <p><strong>Website:</strong> <a href={website} target="_blank" rel="noopener noreferrer">{website}</a></p>
@@ -75,12 +83,12 @@ const Footer: React.FC<FooterProps> = ({
             </div>
           </Col>
           
-          <Col lg={2} className="footer-section">
-            <h5 className="footer-section-title">Khám phá</h5>
-            <ul className="footer-links">
+          <Col lg={2} className={styles.footerSection}>
+            <h5 className={styles.footerSectionTitle}>Khám phá</h5>
+            <ul className={styles.footerLinks}>
               {exploreLinks.map((link, index) => (
                 <li key={index}>
-                  <Link to={link.path} className="footer-link">
+                  <Link to={link.path} className={styles.footerLink}>
                     {link.label}
                   </Link>
                 </li>
@@ -88,12 +96,12 @@ const Footer: React.FC<FooterProps> = ({
             </ul>
           </Col>
           
-          <Col lg={3} className="footer-section">
-            <h5 className="footer-section-title">Thông tin giảng viên</h5>
-            <ul className="footer-links">
+          <Col lg={3} className={styles.footerSection}>
+            <h5 className={styles.footerSectionTitle}>Thông tin giảng viên</h5>
+            <ul className={styles.footerLinks}>
               {facultyLinks.map((link, index) => (
                 <li key={index}>
-                  <Link to={link.path} className="footer-link">
+                  <Link to={link.path} className={styles.footerLink}>
                     {link.label}
                   </Link>
                 </li>
@@ -101,35 +109,32 @@ const Footer: React.FC<FooterProps> = ({
             </ul>
           </Col>
           
-          <Col lg={3} className="footer-section">
-            <h5 className="footer-section-title">Mạng xã hội</h5>
-            <div className="social-media">
+          <Col lg={3} className={styles.footerSection}>
+            <h5 className={styles.footerSectionTitle}>Mạng xã hội</h5>
+            <div className={styles.socialMedia}>
               {socialMedia.map((social, index) => (
                 <a
                   key={index}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="social-link"
+                  className={styles.socialLink}
                   aria-label={social.name}
                 >
-                  <span className="social-icon">{social.icon}</span>
+                  <span className={styles.socialIcon}>{social.icon}</span>
+                  <span className={styles.socialName}>{social.name}</span>
                 </a>
               ))}
             </div>
           </Col>
         </Row>
-        
-        <div className="footer-divider"></div>
-        
-        <Row>
-          <Col>
-            <div className="footer-copyright">
-              {copyrightText}
-            </div>
-          </Col>
-        </Row>
       </Container>
+      
+      <div className={styles.footerDivider}></div>
+      
+      <div className={styles.footerCopyright}>
+        {copyrightText}
+      </div>
     </footer>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -15,15 +15,6 @@ import { defaultTheme, applyTheme } from './config/theme';
 // Pages
 const HomePage = () => (
   <>
-  <Header 
-    backgroundImage={defaultTheme.images.heroBackground}
-    logo={defaultTheme.images.logo}
-    schoolName={defaultTheme.content.schoolName}
-    schoolNameEn={defaultTheme.content.schoolNameEn}
-    navItems={defaultTheme.navigation.items}
-    coreValuesTitle={defaultTheme.content.coreValuesTitle}
-    coreValuesText={defaultTheme.content.coreValuesText}
-  />
     <AboutSection 
       title={defaultTheme.content.aboutTitle}
       description={defaultTheme.content.aboutDescription}
@@ -97,8 +88,15 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <BrowserRouter>
       <div className="App">
+        <Header
+          backgroundImage={defaultTheme.images.heroBackground}
+          logo={defaultTheme.images.logo}
+          schoolName={defaultTheme.content.schoolName}
+          schoolNameEn={defaultTheme.content.schoolNameEn}
+          navItems={defaultTheme.navigation.items}
+        />
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -124,7 +122,8 @@ function App() {
           email={defaultTheme.content.contactInfo.email}
         />
       </div>
-    </Router>
+      </BrowserRouter>
+    
   );
 }
 

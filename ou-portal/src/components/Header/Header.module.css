@@ -101,17 +101,13 @@
   transition: all 0.3s ease;
 }
 
-/* Hiệu ứng hover cho tất cả các mục */
-.headerNavLinks:hover .headerNavLink.active .navIndicator {
-  opacity: 0; /* Ẩn gạch dưới của mục active khi hover vào menu */
-}
-
-.headerNavLink:hover {
+/* Hiệu ứng hover cho các mục không active */
+.headerNavLink:not(.active):hover {
   color: #FFFFFF !important;
   font-weight: 700 !important;
 }
 
-.headerNavLink:hover::after {
+.headerNavLink:not(.active):hover::after {
   content: '';
   width: 16px;
   height: 2px;
@@ -123,6 +119,16 @@
 .headerNavLink.active {
   font-weight: 700 !important;
   color: #FFFFFF !important;
+}
+
+/* Khi hover vào menu, các mục active sẽ trở về trạng thái bình thường */
+.headerNavLinks:hover .headerNavLink.active {
+  color: #CECDCD !important;
+  font-weight: 400 !important;
+}
+
+.headerNavLinks:hover .headerNavLink.active .navIndicator {
+  opacity: 0;
 }
 
 .navIndicator {
@@ -168,6 +174,15 @@
   color: #FFFFFF;
   margin-bottom: 40px;
   max-width: 703px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; /* Tạo khoảng cách giữa các cụm từ */
+}
+
+/* Tạo các phần tử span cho từng cụm từ để căn chỉnh */
+.coreValuesText span {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .headerContactButton {
@@ -213,11 +228,6 @@
   
   .headerSchoolNames {
     display: none;
-  }
-  
-  /* Điều chỉnh cho mobile */
-  .headerNavLinks:hover .headerNavLink.active .navIndicator {
-    opacity: 1; /* Trên mobile, giữ nguyên trạng thái */
   }
 }
 
