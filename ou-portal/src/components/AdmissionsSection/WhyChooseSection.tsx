@@ -17,7 +17,6 @@ const WhyChooseSection: React.FC<WhyChooseSectionProps> = ({
       <Container>
         {/* Tiêu đề chính */}
         <h2 className={styles.sectionTitle}>
-          <span className={styles.ctaHighlight}>Đăng ký nhận tư vấn</span>
           <br />
           {whyChooseData.title}
         </h2>

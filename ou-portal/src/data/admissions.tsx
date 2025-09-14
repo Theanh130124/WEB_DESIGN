@@ -93,7 +93,7 @@ export const admissionsSectionData: AdmissionsSectionContent = {
 };
 
 export const whyChooseData: WhyChooseContent = {
-  title: "Vì sao bạn chọn OU ?",
+  title: "VÌ SAO BẠN CHỌN OU ?",
   items: [
     {
       title: "Trường Đại học công lập",
