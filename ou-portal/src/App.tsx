@@ -4,105 +4,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 // Components
 import Header from './components/Header/Header';
-import AboutSection from './components/AboutSection/AboutSection';
-import GallerySection from './components/GallerySection/GallerySection';
 import Footer from './components/Footer/Footer';
-import AdmissionsSection from './components/AdmissionsSection/AdmissionsSection';
-import WhyChooseSection from './components/AdmissionsSection/WhyChooseSection';
-import { admissionsData, whyChooseData } from './data/admissions';
-// Theme configuration
-import { defaultTheme, applyTheme } from './config/theme';
 
 // Pages
-const HomePage = () => (
-  <>
-    <Header
-      backgroundImage={defaultTheme.images.heroBackground}
-      logo={defaultTheme.images.logo}
-      schoolName={defaultTheme.content.schoolName}
-      schoolNameEn={defaultTheme.content.schoolNameEn}
-      navItems={defaultTheme.navigation.items}
-      coreValuesTitle={defaultTheme.content.coreValuesTitle}
-      coreValuesText={defaultTheme.content.coreValuesText}
-    />
-    <AboutSection
-      title={defaultTheme.content.aboutTitle}
-      description={defaultTheme.content.aboutDescription}
-      principalName={defaultTheme.content.principalName}
-      principalTitle={defaultTheme.content.principalTitle}
-      principalMessage={defaultTheme.content.principalMessage}
-      principalDescription={defaultTheme.content.principalDescription}
-      principalImage={defaultTheme.images.principalImage}
-      principalImageSize={defaultTheme.imageSizes.principalImage}
-    />
-    <GallerySection
-      images={defaultTheme.images.galleryImages.map((src, index) => ({
-        src,
-        alt: `Gallery Image ${index + 1}`,
-        title: `Gallery Image ${index + 1}`
-      }))}
-      imageSize={defaultTheme.imageSizes.galleryImage}
-    />
-  </>
-);
+import HomePage from './components/HomePage';
+import AboutPage from './components/AboutPage';
+import FacultyPage from './components/FacultyPage';
+import AdmissionsPage from './components/AdmissionsPage';
+import ContactPage from './components/ContactPage';
+import NewsPage from './components/NewsPage';
+import GallerySection from './components/GallerySection/GallerySection';
 
-const AboutPage = () => (
-  <div className="page-content">
-    <div className="container py-5">
-      <h1>Về chúng tôi</h1>
-      <p>Trang giới thiệu về trường đại học...</p>
-    </div>
-  </div>
-);
-
-const FacultyPage = () => (
-  <div className="page-content">
-    <div className="container py-5">
-      <h1>Giảng viên</h1>
-      <p>Thông tin về đội ngũ giảng viên...</p>
-    </div>
-  </div>
-);
-
-const AdmissionsPage = () => (
-  <>
-    <Header
-      backgroundImage={defaultTheme.images.heroBackground}
-      logo={defaultTheme.images.logo}
-      schoolName={defaultTheme.content.schoolName}
-      schoolNameEn={defaultTheme.content.schoolNameEn}
-      navItems={defaultTheme.navigation.items}
-      coreValuesTitle={defaultTheme.content.coreValuesTitle}
-      coreValuesText={defaultTheme.content.coreValuesText}
-    />
-    <AdmissionsSection
-      admissionsData={admissionsData}
-    />
-    <WhyChooseSection
-      whyChooseData={whyChooseData}
-      ctaButtonText={admissionsData.ctaButtonText}
-    />
-  </>
-);
-
-const ContactPage = () => (
-  <div className="page-content">
-    <div className="container py-5">
-      <h1>Liên hệ</h1>
-      <p>Thông tin liên hệ...</p>
-    </div>
-  </div>
-);
-
-const NewsPage = () => (
-  <div className="page-content">
-    <div className="container py-5">
-      <h1>Tin tức</h1>
-      <p>Tin tức và sự kiện...</p>
-    </div>
-  </div>
-);
-
+// Theme configuration
+import { defaultTheme, applyTheme } from './config/theme';
 function App() {
   useEffect(() => {
     // Apply default theme on app load
@@ -112,6 +26,13 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <Header
+          backgroundImage={defaultTheme.images.heroBackground}
+          logo={defaultTheme.images.logo}
+          schoolName={defaultTheme.content.schoolName}
+          schoolNameEn={defaultTheme.content.schoolNameEn}
+          navItems={defaultTheme.navigation.items}
+        />
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />

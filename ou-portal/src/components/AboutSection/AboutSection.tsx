@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
-import './AboutSection.module.css';
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import { motion, Variants } from 'framer-motion';
+import styles from './AboutSection.module.css';
 
 interface InfoCard {
-  icon: string;
+  icon: React.ReactNode;
   title: string;
   description: string;
 }
@@ -14,138 +15,316 @@ interface AboutSectionProps {
   buttonText?: string;
   buttonLink?: string;
   infoCards?: InfoCard[];
-  backgroundImage?: string;
   principalName?: string;
   principalTitle?: string;
   principalMessage?: string;
   principalDescription?: string;
   principalImage?: string;
-  principalImageSize?: {
-    width: string;
-    height: string;
-  };
 }
+
+// Animation variants với kiểu được định nghĩa đúng
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
+
+const cardVariants: Variants = {
+  hidden: { scale: 0.9, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  },
+  hover: {
+    y: -10,
+    boxShadow: "0px 10px 25px rgba(0, 0, 0, 0.1)",
+    transition: {
+      duration: 0.3,
+      ease: "easeOut"
+    }
+  }
+};
+
+const imageVariants: Variants = {
+  hidden: { x: -50, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut"
+    }
+  }
+};
+
+const textVariants: Variants = {
+  hidden: { x: 50, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut"
+    }
+  }
+};
+
+const buttonVariants: Variants = {
+  hidden: { scale: 0 },
+  visible: {
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 15
+    }
+  },
+  hover: {
+    scale: 1.05,
+    backgroundColor: "#0178B8",
+    transition: {
+      duration: 0.3
+    }
+  },
+  tap: {
+    scale: 0.95
+  }
+};
 
 const AboutSection: React.FC<AboutSectionProps> = ({
   title = 'Giới thiệu Trường',
   description = 'Dưới đây là phần giới thiệu tổng quan về trường chúng tôi, từ cổng trường đến toàn bộ các cơ sở vật chất hiện có...',
   buttonText = 'Xem chi tiết',
   buttonLink = '/about',
-  backgroundImage = '/about-bg.jpg',
   principalName = 'GS.TS. Nguyễn Minh Hà',
   principalTitle = 'Hiệu trưởng Trường',
   principalMessage = 'Lời chúc mừng kỷ niệm 35 năm thành lập Trường Đại học Mở Thành phố Hồ Chí Minh',
   principalDescription = 'Từ quy mô ban đầu chỉ với 02 khoa và 13 cán bộ, đến nay Trường Đại học Mở TP.HCM đã phát triển thành một cơ sở giáo dục đa ngành với 13 khoa, 03 trung tâm đào tạo và hơn 850 cán bộ viên chức, người lao động, trong đó hơn 40% có trình độ tiến sĩ trở lên. Bên cạnh đó, hệ thống đào tạo từ xa và vừa học vừa làm đã phủ rộng hơn 40 tỉnh, thành từ Bình Định đến Cà Mau.',
-  principalImage = '/principal.jpg',
-  principalImageSize = { width: '100%', height: '342px' },
+  principalImage = '/default/logo-default.jpg',
   infoCards = [
     {
-      icon: '🏢', //xem lại icon
+      icon: (
+        <div className={styles.facilityIcon}>
+          <div className={styles.iconInner}>
+            <div className={styles.vector5}></div>
+            <div className={styles.ellipse5}></div>
+            <div className={styles.ellipse6}></div>
+            <div className={styles.ellipse10}></div>
+            <div className={styles.ellipse8}></div>
+            <div className={styles.ellipse7}></div>
+            <div className={styles.ellipse11}></div>
+            <div className={styles.ellipse9}></div>
+          </div>
+        </div>
+      ),
       title: 'Cơ sở vật chất',
       description: 'Phòng học hiện đại, thư viện với 50.000 đầu sách, phòng thí nghiệm, phòng máy tính, khu thể thao...'
     },
     {
-      icon: '📍',
-      title: 'Địa chỉ',
-      description: 'Địa chỉ 1: 97 Võ Văn Tần, P.Xuân Hòa, TP Hồ Chí Minh.'
-    },
-    {
-      icon: '📜',
+      icon: (
+        <div className={styles.historyIcon}>
+          <div className={styles.iconInner}>
+            <div className={styles.historyVector}></div>
+            <div className={styles.historyLine1}></div>
+            <div className={styles.historyLine2}></div>
+            <div className={styles.historyLine3}></div>
+            <div className={styles.historyLine4}></div>
+            <div className={styles.historyEllipse}></div>
+            <div className={styles.historyStar}></div>
+          </div>
+        </div>
+      ),
       title: 'Lịch sử',
       description: 'Thành lập ngày 15/06/1990...'
     },
     {
-      icon: '🏆',
+      icon: (
+        <div className={styles.addressIcon}>
+          <div className={styles.iconInner}>
+            <div className={styles.addressSubtract1}></div>
+            <div className={styles.addressEllipse12}></div>
+            <div className={styles.addressEllipse13}></div>
+            <div className={styles.addressEllipse14}></div>
+            <div className={styles.addressSubtract2}></div>
+            <div className={styles.addressEllipse15}></div>
+            <div className={styles.addressEllipse16}></div>
+            <div className={styles.addressSubtract3}></div>
+            <div className={styles.addressEllipse17}></div>
+            <div className={styles.addressEllipse18}></div>
+          </div>
+        </div>
+      ),
+      title: 'Địa chỉ',
+      description: 'Địa chỉ 1: 97 Võ Văn Tần, P.Xuân Hòa, TP Hồ Chí Minh.'
+    },
+    {
+      icon: (
+        <div className={styles.achievementIcon}>
+          <div className={styles.iconInner}>
+            <div className={styles.achievementRectangle}></div>
+            <div className={styles.achievementStar1}></div>
+            <div className={styles.achievementEllipse}></div>
+            <div className={styles.achievementStar2}></div>
+          </div>
+        </div>
+      ),
       title: 'Thành tựu',
       description: 'Top 1201-1500 Thế giới theo Times Higher Education năm 2025'
     }
   ]
 }) => {
+  // Sắp xếp lại thứ tự các thẻ: Cơ sở vật chất trước, sau đó đến Lịch sử
+  const sortedInfoCards = [...infoCards];
+  const facilityIndex = sortedInfoCards.findIndex(card => card.title === 'Cơ sở vật chất');
+  const historyIndex = sortedInfoCards.findIndex(card => card.title === 'Lịch sử');
+  
+  // Nếu cả hai thẻ đều tồn tại, đảo vị trí để Cơ sở vật chất đứng trước Lịch sử
+  if (facilityIndex !== -1 && historyIndex !== -1 && facilityIndex > historyIndex) {
+    const temp = sortedInfoCards[facilityIndex];
+    sortedInfoCards[facilityIndex] = sortedInfoCards[historyIndex];
+    sortedInfoCards[historyIndex] = temp;
+  }
+
   return (
-    <div className="about-section">
-      <Container>
+    <motion.div 
+      className={styles.aboutSection}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={containerVariants}
+    >
+      <div className={styles.headerBg}></div>
+      
+      <Container className="position-relative">
         {/* Principal Message Section */}
-        <Row className="principal-section">
-          <Col lg={6}>
-            <div className="principal-video">
-              <div className="video-container">
+        <Row className={`${styles.principalSection} mb-5`}>
+          <Col lg={6} className="mb-4 mb-lg-0">
+            <motion.div 
+              className={styles.videoContainer}
+              variants={imageVariants}
+            >
+              <div className={styles.videoBg}>
                 <img 
                   src={principalImage} 
                   alt="Principal" 
-                  className="principal-image"
-                  style={{
-                    width: principalImageSize.width,
-                    height: principalImageSize.height
-                  }}
+                  className={styles.principalImage}
                 />
-                <div className="video-overlay">
-                  <div className="play-button">▶</div>
-                </div>
+                <div className={styles.videoOverlay}></div>
               </div>
-            </div>
+            </motion.div>
           </Col>
           <Col lg={6}>
-            <div className="principal-content">
-              <h2 className="principal-message">
+            <motion.div 
+              className={styles.principalContent}
+              variants={textVariants}
+            >
+              <motion.h2 
+                className={styles.principalMessage}
+                variants={itemVariants}
+              >
                 {principalMessage}
-              </h2>
-              <h3 className="principal-name">
+              </motion.h2>
+              <motion.h3 
+                className={styles.principalName}
+                variants={itemVariants}
+              >
                 {principalName} – {principalTitle}
-              </h3>
-              <p className="principal-description">
+              </motion.h3>
+              <motion.p 
+                className={styles.principalDescription}
+                variants={itemVariants}
+              >
                 {principalDescription}
-              </p>
-              <Button 
-                href={buttonLink}
-                className="principal-button"
-                size="lg"
+              </motion.p>
+              <motion.a 
+                href={buttonLink} 
+                className={styles.principalButton}
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
               >
                 {buttonText}
-              </Button>
-            </div>
+              </motion.a>
+            </motion.div>
           </Col>
         </Row>
 
         {/* School Introduction Section */}
-        <Row className="school-intro-section">
-          <Col lg={4}>
-            <div className="intro-content">
-              <h2 className="intro-title">
+        <Row className={styles.schoolIntroSection}>
+          <Col md={5} lg={4} className="mb-4 mt-4 mb-md-0">
+            <motion.div 
+              className={styles.introContent}
+              variants={textVariants}
+            >
+              <motion.h2 
+                className={styles.introTitle}
+                variants={itemVariants}
+              >
                 {title}
-              </h2>
-              <div className="title-underline"></div>
-              <p className="intro-description">
+              </motion.h2>
+              <motion.p 
+                className={styles.introDescription}
+                variants={itemVariants}
+              >
                 {description}
-              </p>
-              <Button 
-                href={buttonLink}
-                className="intro-button"
-                size="lg"
+              </motion.p>
+              <motion.a 
+                href={buttonLink} 
+                className={styles.introButton}
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
               >
                 {buttonText}
-              </Button>
-            </div>
+              </motion.a>
+            </motion.div>
           </Col>
-          <Col lg={8}>
+          <Col md={7} lg={7}>
             <Row>
-              {infoCards.map((card, index) => (
-                <Col md={6} key={index} className="mb-4">
-                  <Card className="info-card">
-                    <Card.Body>
-                      <div className="card-icon">
-                        {card.icon}
-                      </div>
-                      <h5 className="card-title">{card.title}</h5>
-                      <p className="card-description">{card.description}</p>
-                    </Card.Body>
-                  </Card>
+              {sortedInfoCards.map((card, index) => (
+                <Col sm={6} key={index} className="mb-4">
+                  <motion.div
+                    variants={cardVariants}
+                    whileHover="hover"
+                  >
+                    <Card className={styles.infoCard}>
+                      <Card.Body>
+                        <div className={styles.cardIcon}>
+                          {card.icon}
+                        </div>
+                        <Card.Title className={styles.cardTitle}>{card.title}</Card.Title>
+                        <Card.Text className={styles.cardDescription}>{card.description}</Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </motion.div>
                 </Col>
               ))}
             </Row>
           </Col>
         </Row>
       </Container>
-    </div>
+    </motion.div>
   );
 };
 

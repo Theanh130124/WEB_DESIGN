@@ -1,73 +1,61 @@
-.about-section {
+.aboutSection {
+  position: relative;
+  width: 100%;
   padding: 80px 0;
-  background: #F9FBFD;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.principal-section {
+.headerBg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #F9FBFD;
+  border-radius: 4px;
+  z-index: -1;
+}
+
+/* Principal Section Styles */
+.principalSection {
   margin-bottom: 80px;
 }
 
-.principal-video {
-  position: relative;
+.videoContainer {
+  height: 342px;
+  width: 90%;
 }
 
-.video-container {
+.videoBg {
   position: relative;
+  width: 100%;
+  height: 100%;
   background: #FFFFFF;
   box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.06);
   border-radius: 4px;
   overflow: hidden;
 }
 
-.principal-image {
+.principalImage {
   width: 100%;
-  height: 342px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 4px;
 }
 
-.video-overlay {
+.videoOverlay {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: opacity 0.3s ease;
 }
 
-.video-overlay:hover {
-  opacity: 0.8;
-}
-
-.play-button {
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  color: #2BA7E2;
-  transition: all 0.3s ease;
-}
-
-.play-button:hover {
-  background: #FFFFFF;
-  transform: scale(1.1);
-}
-
-.principal-content {
-  padding: 20px 0;
-}
-
-.principal-message {
-  font-family: 'Open Sans', sans-serif;
+.principalMessage {
   font-weight: 700;
   font-size: 30px;
   line-height: 48px;
@@ -76,8 +64,7 @@
   margin-bottom: 20px;
 }
 
-.principal-name {
-  font-family: 'Open Sans', sans-serif;
+.principalName {
   font-weight: 700;
   font-size: 24px;
   line-height: 32px;
@@ -86,8 +73,7 @@
   margin-bottom: 24px;
 }
 
-.principal-description {
-  font-family: 'Open Sans', sans-serif;
+.principalDescription {
   font-weight: 400;
   font-size: 14px;
   line-height: 32px;
@@ -96,41 +82,38 @@
   margin-bottom: 32px;
 }
 
-.principal-button {
-  background: #0193DC !important;
-  border: none !important;
-  border-radius: 4px !important;
-  padding: 11px 24px !important;
-  font-family: 'Open Sans', sans-serif;
+.principalButton {
+  display: inline-block;
+  width: 184px;
+  height: 40px;
+  background: #0193DC;
+  border-radius: 4px;
   font-weight: 700;
   font-size: 14px;
-  line-height: 18px;
+  line-height: 40px;
+  text-align: center;
   letter-spacing: 0.3px;
-  color: #FFFFFF !important;
+  color: #FFFFFF;
   text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s;
 }
 
-.principal-button:hover {
-  background: #0178B8 !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(1, 147, 220, 0.3);
+.principalButton:hover {
+  background: #0178B8;
 }
 
-.school-intro-section {
-  background: #FFFFFF;
-  padding: 60px 40px;
-  border-radius: 4px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+/* School Introduction Section */
+.schoolIntroSection {
+  display: flex;
+  gap: 60px;
 }
 
-.intro-content {
-  padding-right: 40px;
+.introContent {
+  padding-right: 30px;
+  border-right: 1px solid #D2E0EA;
 }
 
-.intro-title {
-  font-family: 'Open Sans', sans-serif;
+.introTitle {
   font-weight: 700;
   font-size: 24px;
   line-height: 38px;
@@ -139,15 +122,7 @@
   margin-bottom: 16px;
 }
 
-.title-underline {
-  width: 60px;
-  height: 3px;
-  background: #2BA7E2;
-  margin-bottom: 24px;
-}
-
-.intro-description {
-  font-family: 'Open Sans', sans-serif;
+.introDescription {
   font-weight: 400;
   font-size: 14px;
   line-height: 32px;
@@ -156,43 +131,38 @@
   margin-bottom: 32px;
 }
 
-.intro-button {
-  background: #0193DC !important;
-  border: none !important;
-  border-radius: 4px !important;
-  padding: 11px 24px !important;
-  font-family: 'Open Sans', sans-serif;
+.introButton {
+  display: inline-block;
+  width: 184px;
+  height: 40px;
+  background: #0193DC;
+  border-radius: 4px;
   font-weight: 700;
   font-size: 14px;
-  line-height: 18px;
+  line-height: 40px;
+  text-align: center;
   letter-spacing: 0.3px;
-  color: #FFFFFF !important;
+  color: #FFFFFF;
   text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s;
 }
 
-.intro-button:hover {
-  background: #0178B8 !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(1, 147, 220, 0.3);
+.introButton:hover {
+  background: #0178B8;
 }
 
-.info-card {
+.infoCard {
   background: #FFFFFF;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
-  border: none;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
 }
 
-.info-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.card-icon {
+.cardIcon {
   width: 64px;
   height: 64px;
   background: #FFFFFF;
@@ -201,67 +171,105 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
   margin-bottom: 16px;
 }
 
-.card-title {
-  font-family: 'Open Sans', sans-serif;
+.iconInner {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.cardTitle {
   font-weight: 700;
   font-size: 20px;
   line-height: 27px;
   letter-spacing: 0.3px;
   color: #0C101A;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
-.card-description {
-  font-family: 'Open Sans', sans-serif;
+.cardDescription {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 24px;
   letter-spacing: 0.3px;
-  color: #0C101A;
+  color: #919FAE;
   margin: 0;
 }
 
-@media (max-width: 991.98px) {
-  .intro-content {
+/* Các styles cho icon giữ nguyên như trước */
+.facilityIcon {
+  width: 40.15px;
+  height: 41.96px;
+}
+
+.vector5 {
+  position: absolute;
+  width: 15.26px;
+  height: 16.4px;
+  left: 12.45px;
+  top: 11.59px;
+  background: #60C1F8;
+}
+
+.ellipse5 {
+  position: absolute;
+  width: 34.33px;
+  height: 34.33px;
+  left: 2.91px;
+  top: 2.81px;
+  border: 1px solid #22355D;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+/* Các styles khác cho icon giữ nguyên */
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .introContent {
+    border-right: none;
+    border-bottom: 1px solid #D2E0EA;
     padding-right: 0;
-    margin-bottom: 40px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutSection {
+    padding: 40px 0;
   }
   
-  .principal-message {
+  .principalMessage {
     font-size: 24px;
     line-height: 36px;
   }
   
-  .principal-name {
+  .principalName {
     font-size: 20px;
     line-height: 28px;
   }
 }
 
-@media (max-width: 768px) {
-  .about-section {
-    padding: 40px 0;
+@media (max-width: 576px) {
+  .videoContainer {
+    height: 250px;
   }
   
-  .principal-section {
-    margin-bottom: 40px;
-  }
-  
-  .school-intro-section {
-    padding: 40px 20px;
-  }
-  
-  .principal-message {
+  .principalMessage {
     font-size: 20px;
     line-height: 32px;
   }
   
-  .principal-name {
+  .principalName {
     font-size: 18px;
+    line-height: 24px;
+  }
+  
+  .principalDescription {
+    font-size: 12px;
     line-height: 24px;
   }
 }
