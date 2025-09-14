@@ -1,0 +1,10 @@
+.home-page {
+    width: 100%;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .home-page {
+      padding: 0 15px;
+    }
+  }

@@ -1,73 +1,69 @@
-.about-section {
-  padding: 80px 0;
+.aboutSection {
+  position: relative;
+  width: 100%;
+  width: 100%;
+  padding: 80px 100px; /* Thêm padding */
+  font-family: 'Open Sans', sans-serif;
+}
+
+.headerBg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   background: #F9FBFD;
+  border-radius: 4px;
+  z-index: -1;
 }
 
-.principal-section {
+/* Principal Section Styles */
+.principalSection {
+  display: flex;
+  gap: 60px;
   margin-bottom: 80px;
+  padding: 0 20px;
 }
 
-.principal-video {
-  position: relative;
+.videoContainer {
+  flex: 0 0 456px;
+  height: 342px;
 }
 
-.video-container {
+.videoBg {
   position: relative;
+  width: 100%;
+  height: 100%;
   background: #FFFFFF;
   box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.06);
   border-radius: 4px;
   overflow: hidden;
 }
 
-.principal-image {
+.principalImage {
   width: 100%;
-  height: 342px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 4px;
 }
 
-.video-overlay {
+.videoOverlay {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: opacity 0.3s ease;
 }
 
-.video-overlay:hover {
-  opacity: 0.8;
+.principalContent {
+  flex: 1;
 }
 
-.play-button {
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  color: #2BA7E2;
-  transition: all 0.3s ease;
-}
-
-.play-button:hover {
-  background: #FFFFFF;
-  transform: scale(1.1);
-}
-
-.principal-content {
-  padding: 20px 0;
-}
-
-.principal-message {
-  font-family: 'Open Sans', sans-serif;
+.principalMessage {
   font-weight: 700;
   font-size: 30px;
   line-height: 48px;
@@ -76,8 +72,7 @@
   margin-bottom: 20px;
 }
 
-.principal-name {
-  font-family: 'Open Sans', sans-serif;
+.principalName {
   font-weight: 700;
   font-size: 24px;
   line-height: 32px;
@@ -86,8 +81,7 @@
   margin-bottom: 24px;
 }
 
-.principal-description {
-  font-family: 'Open Sans', sans-serif;
+.principalDescription {
   font-weight: 400;
   font-size: 14px;
   line-height: 32px;
@@ -96,41 +90,40 @@
   margin-bottom: 32px;
 }
 
-.principal-button {
-  background: #0193DC !important;
-  border: none !important;
-  border-radius: 4px !important;
-  padding: 11px 24px !important;
-  font-family: 'Open Sans', sans-serif;
+.principalButton {
+  display: inline-block;
+  width: 184px;
+  height: 40px;
+  background: #0193DC;
+  border-radius: 4px;
   font-weight: 700;
   font-size: 14px;
-  line-height: 18px;
+  line-height: 40px;
+  text-align: center;
   letter-spacing: 0.3px;
-  color: #FFFFFF !important;
+  color: #FFFFFF;
   text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s;
 }
 
-.principal-button:hover {
-  background: #0178B8 !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(1, 147, 220, 0.3);
+.principalButton:hover {
+  background: #0178B8;
 }
 
-.school-intro-section {
-  background: #FFFFFF;
-  padding: 60px 40px;
-  border-radius: 4px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+/* School Introduction Section */
+.schoolIntroSection {
+  display: flex;
+  gap: 60px;
+  padding: 0 20px;
 }
 
-.intro-content {
-  padding-right: 40px;
+.introContent {
+  flex: 0 0 299px;
+  padding-right: 30px;
+  border-right: 1px solid #D2E0EA;
 }
 
-.intro-title {
-  font-family: 'Open Sans', sans-serif;
+.introTitle {
   font-weight: 700;
   font-size: 24px;
   line-height: 38px;
@@ -139,15 +132,7 @@
   margin-bottom: 16px;
 }
 
-.title-underline {
-  width: 60px;
-  height: 3px;
-  background: #2BA7E2;
-  margin-bottom: 24px;
-}
-
-.intro-description {
-  font-family: 'Open Sans', sans-serif;
+.introDescription {
   font-weight: 400;
   font-size: 14px;
   line-height: 32px;
@@ -156,43 +141,45 @@
   margin-bottom: 32px;
 }
 
-.intro-button {
-  background: #0193DC !important;
-  border: none !important;
-  border-radius: 4px !important;
-  padding: 11px 24px !important;
-  font-family: 'Open Sans', sans-serif;
+.introButton {
+  display: inline-block;
+  width: 184px;
+  height: 40px;
+  background: #0193DC;
+  border-radius: 4px;
   font-weight: 700;
   font-size: 14px;
-  line-height: 18px;
+  line-height: 40px;
+  text-align: center;
   letter-spacing: 0.3px;
-  color: #FFFFFF !important;
+  color: #FFFFFF;
   text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s;
 }
 
-.intro-button:hover {
-  background: #0178B8 !important;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(1, 147, 220, 0.3);
+.introButton:hover {
+  background: #0178B8;
 }
 
-.info-card {
+.infoCardsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  flex: 1;
+}
+
+.infoCard {
+  width: 250px;
+  height: 250px;
   background: #FFFFFF;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
-  border: none;
-  height: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
 }
 
-.info-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.card-icon {
+.cardIcon {
   width: 64px;
   height: 64px;
   background: #FFFFFF;
@@ -201,67 +188,279 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
   margin-bottom: 16px;
 }
 
-.card-title {
-  font-family: 'Open Sans', sans-serif;
+.iconInner {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.cardTitle {
   font-weight: 700;
   font-size: 20px;
   line-height: 27px;
   letter-spacing: 0.3px;
   color: #0C101A;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
-.card-description {
-  font-family: 'Open Sans', sans-serif;
+.cardDescription {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 24px;
   letter-spacing: 0.3px;
-  color: #0C101A;
+  color: #919FAE;
   margin: 0;
 }
 
-@media (max-width: 991.98px) {
-  .intro-content {
-    padding-right: 0;
-    margin-bottom: 40px;
+/* Facility Icon Styles */
+.facilityIcon {
+  width: 40.15px;
+  height: 41.96px;
+}
+
+.vector5 {
+  position: absolute;
+  width: 15.26px;
+  height: 16.4px;
+  left: 12.45px;
+  top: 11.59px;
+  background: #60C1F8;
+}
+
+.ellipse5 {
+  position: absolute;
+  width: 34.33px;
+  height: 34.33px;
+  left: 2.91px;
+  top: 2.81px;
+  border: 1px solid #22355D;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.ellipse6 {
+  position: absolute;
+  width: 7.63px;
+  height: 7.63px;
+  left: 16.26px;
+  top: 0;
+  background: #F8C301;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+}
+
+.ellipse10 {
+  position: absolute;
+  width: 7.63px;
+  height: 7.63px;
+  left: 29.73px;
+  top: 7.19px;
+  background: #F8C301;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  transform: rotate(60deg);
+}
+
+.ellipse8 {
+  position: absolute;
+  width: 7.63px;
+  height: 7.63px;
+  left: 0;
+  top: 7.19px;
+  background: #F8C301;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  transform: rotate(-60deg);
+}
+
+.ellipse7 {
+  position: absolute;
+  width: 7.63px;
+  height: 7.63px;
+  left: 16.26px;
+  top: 34.33px;
+  background: #F8C301;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+}
+
+.ellipse11 {
+  position: absolute;
+  width: 7.63px;
+  height: 7.63px;
+  left: 0;
+  top: 24.35px;
+  background: #F8C301;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  transform: rotate(60deg);
+}
+
+.ellipse9 {
+  position: absolute;
+  width: 7.63px;
+  height: 7.63px;
+  left: 29.73px;
+  top: 24.35px;
+  background: #F8C301;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  transform: rotate(-60deg);
+}
+
+/* History Icon Styles */
+.historyIcon {
+  width: 40.37px;
+  height: 39.54px;
+}
+
+.historyVector {
+  position: absolute;
+  width: 31.4px;
+  height: 31.4px;
+  left: 0;
+  top: 0;
+  background: #60C1F8;
+  border-radius: 50%;
+}
+
+.historyLine1 {
+  position: absolute;
+  width: 12.69px;
+  height: 1.84px;
+  left: 11.04px;
+  top: 7.36px;
+  background: #22355D;
+}
+
+.historyLine2 {
+  position: absolute;
+  width: 12.82px;
+  height: 1.84px;
+  left: 10.18px;
+  top: 11.04px;
+  background: #22355D;
+}
+
+.historyLine3 {
+  position: absolute;
+  width: 12.77px;
+  height: 1.84px;
+  left: 9.31px;
+  top: 14.72px;
+  background: #22355D;
+}
+
+.historyLine4 {
+  position: absolute;
+  width: 12.82px;
+  height: 1.84px;
+  left: 8.4px;
+  top: 18.4px;
+  background: #22355D;
+}
+
+.historyEllipse {
+  position: absolute;
+  width: 17.45px;
+  height: 17.45px;
+  left: 16.53px;
+  top: 15.7px;
+  background: #F8C301;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  transform: rotate(-60deg);
+}
+
+.historyStar {
+  position: absolute;
+  width: 11.15px;
+  height: 9.56px;
+  left: 22.52px;
+  top: 22.66px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .principalSection {
+    flex-direction: column;
+    gap: 30px;
   }
   
-  .principal-message {
+  .videoContainer {
+    flex: none;
+    width: 100%;
+    max-width: 456px;
+    margin: 0 auto;
+  }
+  
+  .schoolIntroSection {
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .introContent {
+    flex: none;
+    width: 100%;
+    max-width: 500px;
+    border-right: none;
+    border-bottom: 1px solid #D2E0EA;
+    padding-right: 0;
+    padding-bottom: 30px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutSection {
+    padding: 40px 0;
+  }
+  
+  .principalSection, .schoolIntroSection {
+    padding: 0 15px;
+  }
+  
+  .infoCardsContainer {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  
+  .infoCard {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .principalMessage {
     font-size: 24px;
     line-height: 36px;
   }
   
-  .principal-name {
+  .principalName {
     font-size: 20px;
     line-height: 28px;
   }
 }
 
-@media (max-width: 768px) {
-  .about-section {
-    padding: 40px 0;
+@media (max-width: 576px) {
+  .videoContainer {
+    height: 250px;
   }
   
-  .principal-section {
-    margin-bottom: 40px;
-  }
-  
-  .school-intro-section {
-    padding: 40px 20px;
-  }
-  
-  .principal-message {
+  .principalMessage {
     font-size: 20px;
     line-height: 32px;
   }
   
-  .principal-name {
+  .principalName {
     font-size: 18px;
+    line-height: 24px;
+  }
+  
+  .principalDescription {
+    font-size: 12px;
     line-height: 24px;
   }
 }
