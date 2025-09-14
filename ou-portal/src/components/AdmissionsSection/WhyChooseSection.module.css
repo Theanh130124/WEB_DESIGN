@@ -1,63 +1,212 @@
+/* WhyChooseSection.module.css */
 .whyChooseSection {
-  padding: 60px 0;
-  background: #fff;
+  padding: 80px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.whyChooseSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #ff3b30, #f7b500, #1f73f0);
 }
 
 .sectionTitle {
   text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 40px;
-  color: #f7b500; /* vàng */
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 50px;
+  color: #0f1e46;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #1f73f0, #f7b500);
+  border-radius: 2px;
 }
 
 .ctaHighlight {
   display: inline-block;
-  color: red;
-  font-size: 1.1rem;
+  color: #ff3b30;
+  font-size: 1.2rem;
+  font-weight: 700;
   margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .itemRow {
-  border-bottom: 1px solid #eee;
-  padding-bottom: 30px;
+  border-bottom: 1px solid #eaeaea;
+  padding: 40px 0;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.itemRow:last-child {
+  border-bottom: none;
 }
 
 .itemTitle {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #0070c0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1f73f0;
+  margin-bottom: 15px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.itemTitle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: #f7b500;
+  border-radius: 50%;
 }
 
 .itemDescription {
   margin-top: 10px;
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #3b4a7a;
 }
 
 .itemImageContainer {
-  max-width: 300px;
+  max-width: 340px;
   margin: auto;
+  position: relative;
 }
 
-.imageTitleText {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.ctaButton {
-  background: #f7b500;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 30px;
-  color: #fff;
-  font-weight: bold;
-  font-size: 1.1rem;
-  cursor: pointer;
+.itemImageContainer img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
+.itemImageContainer:hover img {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.imageTitleText {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: #666;
+  font-style: italic;
+  text-align: center;
+}
+
+.ctaButton {
+  background: linear-gradient(135deg, #f7b500 0%, #ff8a00 100%);
+  color: #fff;
+  border: 0;
+  border-radius: 50px;
+  padding: 16px 40px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 10px 25px rgba(247, 181, 0, 0.35);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.ctaButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: 0.5s;
+}
+
+.ctaButton:hover::before {
+  left: 100%;
+}
+
 .ctaButton:hover {
-  background: #e09e00;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(247, 181, 0, 0.45);
+}
+
+.spark {
+  margin: 0 10px;
+  font-size: 1.1rem;
+  animation: sparkle 1.5s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Responsive styles */
+@media (max-width: 991.98px) {
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .itemTitle {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .whyChooseSection {
+    padding: 60px 0;
+  }
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+  }
+  
+  .itemRow {
+    padding: 30px 0;
+  }
+  
+  .itemImageContainer {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .sectionTitle {
+    font-size: 1.6rem;
+  }
+  
+  .ctaHighlight {
+    font-size: 1.1rem;
+  }
+  
+  .itemTitle {
+    font-size: 1.3rem;
+  }
+  
+  .ctaButton {
+    padding: 14px 30px;
+    font-size: 1rem;
+  }
 }

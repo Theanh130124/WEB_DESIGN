@@ -1,4 +1,5 @@
-export type AnnouncementItem = { title: string; link: string };
+// ===== Types =====
+export type AnnouncementItem = { title: string; link: string; image?: string };
 
 export type AdmissionsForm = {
   title: string;
@@ -6,8 +7,7 @@ export type AdmissionsForm = {
   announcementBox?: { title: string; text: string };
   infoImage?: string;
 
-  // cột phải: nhóm thumbnail + list thông báo
-  announcementImageGroup: string[];
+  // cột phải: danh sách thông báo (mỗi item: ảnh + tiêu đề + link)
   announcements: AnnouncementItem[];
 };
 
@@ -23,7 +23,7 @@ export type WhyChooseContent = {
   items: { title: string; description: string; image?: string; imageTitle?: string }[];
 };
 
-// ====== DATA ======
+// ===== DATA =====
 
 export const admissionsSectionData: AdmissionsSectionContent = {
   admissionsForms: [
@@ -33,38 +33,61 @@ export const admissionsSectionData: AdmissionsSectionContent = {
         title: "THÔNG BÁO",
         text: "Đăng ký xét tuyển đại học chính quy đợt 2 (đợt bổ sung) năm 2025",
       },
-      announcementImageGroup: [
-        "https://tuyensinh.ou.edu.vn/tmp/rscache/112x70-thongbao2_thumb.jpg",
-        "https://tuyensinh.ou.edu.vn/tmp/rscache/112x70-TTTS2025-01.png",
-        "https://tuyensinh.ou.edu.vn/tmp/rscache/112x70-bosung-01.png",
-        "https://tuyensinh.ou.edu.vn/tmp/rscache/112x70-TT-bosung-01.png"
-      ],
       announcements: [
-        { title: "Danh sách trúng tuyển bổ sung, Đợt 1 - 2025", link: "#" },
-        { title: "Điểm chuẩn trúng tuyển Đợt 1 - 2025", link: "#" },
-        { title: "Ngưỡng đảm bảo chất lượng đầu vào", link: "#" },
-        { title: "Thông báo Danh sách trúng tuyển bổ sung, Đợt 1 - Năm 2025", link: "#" },
+        {
+          title: "Danh sách trúng tuyển bổ sung, Đợt 1 - 2025",
+          link: "#",
+          image: "https://tuyensinh.ou.edu.vn/tmp/rscache/112x70-thongbao2_thumb.jpg",
+        },
+        {
+          title: "Điểm chuẩn trúng tuyển Đợt 1 - 2025",
+          link: "#",
+          image: "https://tuyensinh.ou.edu.vn/tmp/rscache/112x70-TTTS2025-01.png",
+        },
+        {
+          title: "Ngưỡng đảm bảo chất lượng đầu vào",
+          link: "#",
+          image: "https://tuyensinh.ou.edu.vn/tmp/rscache/112x70-bosung-01.png",
+        },
+        {
+          title: "Thông báo Danh sách trúng tuyển bổ sung, Đợt 1 - Năm 2025",
+          link: "#",
+          image: "https://tuyensinh.ou.edu.vn/tmp/rscache/112x70-TT-bosung-01.png",
+        },
       ],
     },
     {
       title: "THÔNG TIN TUYỂN SINH ĐH BẰNG THỨ 2 VÀ LIÊN THÔNG CĐ–ĐH",
       infoImage: "https://tuyensinh.ou.edu.vn/tmp/rscache/540x305-thontgtintuyensinh.jpg",
-      announcementImageGroup: [
-        "https://tuyensinh.ou.edu.vn/tmp/rscache/112x70-LT2024-01.png",
-        "https://tuyensinh.ou.edu.vn/tmp/rscache/112x70-thongbao2_thumb.jpg",
-        "https://tuyensinh.ou.edu.vn/tmp/rscache/112x70-LT2024-01.png"
-      ],
       announcements: [
-        { title: "Tuyển sinh ĐH bằng thứ 2 chính quy - 2024", link: "#" },
-        { title: "Tuyển sinh liên thông CĐ → ĐH hệ chính quy", link: "#" },
-        { title: "Về việc không mở lớp liên thông chính quy năm 2023", link: "#" },
+        {
+          title: "Tuyển sinh ĐH bằng thứ 2 chính quy - 2024",
+          link: "#",
+          image: "https://tuyensinh.ou.edu.vn/tmp/rscache/112x70-LT2024-01.png",
+        },
+        {
+          title: "Tuyển sinh liên thông CĐ → ĐH hệ chính quy",
+          link: "#",
+          image: "https://tuyensinh.ou.edu.vn/tmp/rscache/112x70-thongbao2_thumb.jpg",
+        },
+        {
+          title: "Về việc không mở lớp liên thông chính quy năm 2023",
+          link: "#",
+          image: "https://tuyensinh.ou.edu.vn/tmp/rscache/112x70-LT2024-01.png",
+        },
       ],
     },
   ],
   consultationTitle: "TƯ VẤN TUYỂN SINH",
   consultationItems: [
-    { title: "Lịch livestream tư vấn 2025", image: "https://tuyensinh.ou.edu.vn/media/photos/Logos/664527.jpeg" },
-    { title: "Các hình thức tuyển sinh 2025", image: "https://tuyensinh.ou.edu.vn/media/photos/Logos/hmm.jpg" },
+    {
+      title: "Lịch livestream tư vấn 2025",
+      image: "https://tuyensinh.ou.edu.vn/media/photos/Logos/664527.jpeg",
+    },
+    {
+      title: "Các hình thức tuyển sinh 2025",
+      image: "https://tuyensinh.ou.edu.vn/media/photos/Logos/hmm.jpg",
+    },
   ],
   ctaButtonText: "Đăng ký nhận tư vấn",
 };
@@ -83,7 +106,8 @@ export const whyChooseData: WhyChooseContent = {
       title: "Đội ngũ giảng viên chất lượng",
       description:
         "Giảng viên tốt nghiệp từ các trường danh giá, giàu kinh nghiệm thực tiễn, thân thiện với người học.",
-      image: "https://www.tapchicongsan.org.vn/documents/20182/344510302/vna_potal_ruc_ro_nhung_bong_hoa_tren_giang_duong_trong_ngay_quoc_te_phu_nu_83_6617838.jpg/4d8d442c-7989-43e3-bf0f-a1032f733598?t=1708170870958",
+      image:
+        "https://www.tapchicongsan.org.vn/documents/20182/344510302/vna_potal_ruc_ro_nhung_bong_hoa_tren_giang_duong_trong_ngay_quoc_te_phu_nu_83_6617838.jpg/4d8d442c-7989-43e3-bf0f-a1032f733598?t=1708170870958",
     },
     {
       title: "Chất lượng đào tạo tốt",
