@@ -57,6 +57,30 @@ export interface ThemeConfig {
       website: string;
       email: string;
     };
+    admissions: {
+      heroTitle: string; // "Hệ Đại học chính quy"
+      announcementTitle: string; // "Thông báo"
+      announcements: Array<{ title: string; link: string }>;
+      infoTitle: string; // "THÔNG TIN TUYỂN SINH"
+      infoItems: Array<{ title: string; link: string }>;
+      consultationTitle: string; // "TƯ VẤN TUYỂN SINH"
+      consultationItems: Array<{ title: string; image: string }>;
+      ctaButtonText: string; // "Đăng ký nhận tư vấn"
+    };
+    whyChoose: {
+      ribbonText: string; // "Đăng ký nhận tư vấn"
+      title: string; // "Vì sao bạn chọn OU ?"
+      introRight?: string; // đoạn mô tả ngắn 
+      items: Array<{
+        heading: string;
+        body: string;
+        image: string;
+        imageAlt?: string;
+        captionRight?: string; // chú thích đỏ
+      }>;
+      extrasTitle?: string; // "Và rất nhiều điều hấp dẫn khác"
+      extraLinks?: Array<{ label: string; href?: string }>;
+    };
   };
   navigation: {
     items: Array<{
@@ -129,7 +153,66 @@ export const defaultTheme: ThemeConfig = {
       phone: '028-39207639 hoặc 028-39207640',
       website: 'https://www.hcmou.edu.vn',
       email: 'ou@ou.edu.vn'
+    },
+    admissions: {
+      heroTitle: "Hệ Đại học chính quy",
+      announcementTitle: "Thông báo",
+      announcements: [
+        { title: "Thông báo Danh sách trúng tuyển bổ sung, Đợt 1 - Năm 2025", link: "#" },
+        { title: "Thông báo Điểm chuẩn trúng tuyển Đợt 1 - Năm 2025", link: "#" },
+        { title: "Thông báo Ngưỡng đảm bảo chất lượng đầu vào và Quy tắc quy đổi điểm tương đương", link: "#" },
+      ],
+      infoTitle: "THÔNG TIN TUYỂN SINH ĐH BẰNG THỨ 2 VÀ LIÊN THÔNG CĐ-ĐH",
+      infoItems: [
+        { title: "Thông báo tuyển sinh Đại học bằng thứ 2 Chính quy - năm 2024", link: "#" },
+        { title: "Thông báo tuyển sinh đào tạo liên thông từ cao đẳng lên đại học chính quy năm...", link: "#" },
+        { title: "Thông báo và việc không mở lớp đại học liên thông chính quy năm 2023", link: "#" },
+      ],
+      consultationTitle: "TƯ VẤN TUYỂN SINH",
+      consultationItems: [
+        { title: "Lịch livestream tư vấn tuyển sinh năm 2025", image: "/images/livestream.jpg" },
+        { title: "Các hình thức tư vấn sinh năm học 2025", image: "/images/consultation-type.jpg" },
+      ],
+      ctaButtonText: "Đăng ký nhận tư vấn",
+    },
+    whyChoose: {
+      ribbonText: "Đăng ký nhận tư vấn",
+      title: "Vì sao bạn chọn OU ?",
+      introRight: "có bề dày và kinh nghiệm đào tạo suốt 30 năm qua và nhiều thế hệ học trò thành đạt.",
+      items: [
+        {
+          heading: "Trường Đại học công lập",
+          body: "HCMCU-OU là trường công lập với nhiều chương trình đạt chuẩn...",
+          image: "/images/ou-public.jpg", // Tên file hình ảnh ví dụ
+          imageAlt: "Trường Đại học công lập"
+        },
+        {
+          heading: "Đội ngũ giảng viên chất lượng",
+          body: "Giảng viên tốt nghiệp trong/ngoài nước, giàu kinh nghiệm thực tiễn...",
+          image: "/images/ou-teachers.jpg", // Tên file hình ảnh ví dụ
+          captionRight: "Lễ tuyên dương sinh viên có thành tích xuất sắc"
+        },
+        {
+          heading: "Chất lượng đào tạo tốt",
+          body: "Tỉ lệ sinh viên có việc làm phù hợp chuyên ngành cao (khảo sát 2019 đạt 82.12%)…",
+          image: "/images/ou-quality.jpg", // Tên file hình ảnh ví dụ
+        },
+        {
+          heading: "Học phí thấp",
+          body: "Học phí ổn định, phù hợp đa số gia đình.",
+          image: "/images/ou-tuition.jpg", // Tên file hình ảnh ví dụ
+          captionRight: "Trao học bổng cho sinh viên"
+        }
+      ],
+      extrasTitle: "Và rất nhiều điều hấp dẫn khác",
+      extraLinks: [
+        { label: "Đào tạo đa ngành" },
+        { label: "Cơ sở vật chất tốt" },
+        { label: "Vị trí trung tâm" },
+        { label: "Dịch vụ hỗ trợ sinh viên" }
+      ]
     }
+
   },
   navigation: {
     items: [
@@ -172,9 +255,68 @@ export const exampleThemes: Record<string, Partial<ThemeConfig>> = {
         phone: '028-12345678',
         website: 'https://www.abc.edu.vn',
         email: 'info@abc.edu.vn'
+      },
+      admissions: {
+        heroTitle: "Hệ Đại học chính quy",
+        announcementTitle: "Thông báo",
+        announcements: [
+          { title: "Thông báo Danh sách trúng tuyển bổ sung, Đợt 1 - Năm 2025", link: "#" },
+          { title: "Thông báo Điểm chuẩn trúng tuyển Đợt 1 - Năm 2025", link: "#" },
+          { title: "Thông báo Ngưỡng đảm bảo chất lượng đầu vào và Quy tắc quy đổi điểm tương đương", link: "#" },
+        ],
+        infoTitle: "THÔNG TIN TUYỂN SINH ĐH BẰNG THỨ 2 VÀ LIÊN THÔNG CĐ-ĐH",
+        infoItems: [
+          { title: "Thông báo tuyển sinh Đại học bằng thứ 2 Chính quy - năm 2024", link: "#" },
+          { title: "Thông báo tuyển sinh đào tạo liên thông từ cao đẳng lên đại học chính quy năm...", link: "#" },
+          { title: "Thông báo và việc không mở lớp đại học liên thông chính quy năm 2023", link: "#" },
+        ],
+        consultationTitle: "TƯ VẤN TUYỂN SINH",
+        consultationItems: [
+          { title: "Lịch livestream tư vấn tuyển sinh năm 2025", image: "/images/livestream.jpg" },
+          { title: "Các hình thức tư vấn sinh năm học 2025", image: "/images/consultation-type.jpg" },
+        ],
+        ctaButtonText: "Đăng ký nhận tư vấn",
+      },
+      whyChoose: {
+        ribbonText: "Đăng ký nhận tư vấn",
+        title: "Vì sao bạn chọn OU ?",
+        introRight: "có bề dày và kinh nghiệm đào tạo suốt 30 năm qua và nhiều thế hệ học trò thành đạt.",
+        items: [
+          {
+            heading: "Trường Đại học công lập",
+            body: "HCMCU-OU là trường công lập với nhiều chương trình đạt chuẩn...",
+            image: "/images/ou-public.jpg", // Tên file hình ảnh ví dụ
+            imageAlt: "Trường Đại học công lập"
+          },
+          {
+            heading: "Đội ngũ giảng viên chất lượng",
+            body: "Giảng viên tốt nghiệp trong/ngoài nước, giàu kinh nghiệm thực tiễn...",
+            image: "/images/ou-teachers.jpg", // Tên file hình ảnh ví dụ
+            captionRight: "Lễ tuyên dương sinh viên có thành tích xuất sắc"
+          },
+          {
+            heading: "Chất lượng đào tạo tốt",
+            body: "Tỉ lệ sinh viên có việc làm phù hợp chuyên ngành cao (khảo sát 2019 đạt 82.12%)…",
+            image: "/images/ou-quality.jpg", // Tên file hình ảnh ví dụ
+          },
+          {
+            heading: "Học phí thấp",
+            body: "Học phí ổn định, phù hợp đa số gia đình.",
+            image: "/images/ou-tuition.jpg", // Tên file hình ảnh ví dụ
+            captionRight: "Trao học bổng cho sinh viên"
+          }
+        ],
+        extrasTitle: "Và rất nhiều điều hấp dẫn khác",
+        extraLinks: [
+          { label: "Đào tạo đa ngành" },
+          { label: "Cơ sở vật chất tốt" },
+          { label: "Vị trí trung tâm" },
+          { label: "Dịch vụ hỗ trợ sinh viên" }
+        ]
       }
-    }
+    },
   },
+
   'university-green': {
     colors: {
       primary: '#059669',
@@ -202,10 +344,68 @@ export const exampleThemes: Record<string, Partial<ThemeConfig>> = {
         phone: '028-87654321',
         website: 'https://www.xyz.edu.vn',
         email: 'info@xyz.edu.vn'
+      },
+      admissions: {
+        heroTitle: "Hệ Đại học chính quy",
+        announcementTitle: "Thông báo",
+        announcements: [
+          { title: "Thông báo Danh sách trúng tuyển bổ sung, Đợt 1 - Năm 2025", link: "#" },
+          { title: "Thông báo Điểm chuẩn trúng tuyển Đợt 1 - Năm 2025", link: "#" },
+          { title: "Thông báo Ngưỡng đảm bảo chất lượng đầu vào và Quy tắc quy đổi điểm tương đương", link: "#" },
+        ],
+        infoTitle: "THÔNG TIN TUYỂN SINH ĐH BẰNG THỨ 2 VÀ LIÊN THÔNG CĐ-ĐH",
+        infoItems: [
+          { title: "Thông báo tuyển sinh Đại học bằng thứ 2 Chính quy - năm 2024", link: "#" },
+          { title: "Thông báo tuyển sinh đào tạo liên thông từ cao đẳng lên đại học chính quy năm...", link: "#" },
+          { title: "Thông báo và việc không mở lớp đại học liên thông chính quy năm 2023", link: "#" },
+        ],
+        consultationTitle: "TƯ VẤN TUYỂN SINH",
+        consultationItems: [
+          { title: "Lịch livestream tư vấn tuyển sinh năm 2025", image: "/images/livestream.jpg" },
+          { title: "Các hình thức tư vấn sinh năm học 2025", image: "/images/consultation-type.jpg" },
+        ],
+        ctaButtonText: "Đăng ký nhận tư vấn",
+      },
+      whyChoose: {
+        ribbonText: "Đăng ký nhận tư vấn",
+        title: "Vì sao bạn chọn OU ?",
+        introRight: "có bề dày và kinh nghiệm đào tạo suốt 30 năm qua và nhiều thế hệ học trò thành đạt.",
+        items: [
+          {
+            heading: "Trường Đại học công lập",
+            body: "HCMCU-OU là trường công lập với nhiều chương trình đạt chuẩn...",
+            image: "/images/ou-public.jpg", // Tên file hình ảnh ví dụ
+            imageAlt: "Trường Đại học công lập"
+          },
+          {
+            heading: "Đội ngũ giảng viên chất lượng",
+            body: "Giảng viên tốt nghiệp trong/ngoài nước, giàu kinh nghiệm thực tiễn...",
+            image: "/images/ou-teachers.jpg", // Tên file hình ảnh ví dụ
+            captionRight: "Lễ tuyên dương sinh viên có thành tích xuất sắc"
+          },
+          {
+            heading: "Chất lượng đào tạo tốt",
+            body: "Tỉ lệ sinh viên có việc làm phù hợp chuyên ngành cao (khảo sát 2019 đạt 82.12%)…",
+            image: "/images/ou-quality.jpg", // Tên file hình ảnh ví dụ
+          },
+          {
+            heading: "Học phí thấp",
+            body: "Học phí ổn định, phù hợp đa số gia đình.",
+            image: "/images/ou-tuition.jpg", // Tên file hình ảnh ví dụ
+            captionRight: "Trao học bổng cho sinh viên"
+          }
+        ],
+        extrasTitle: "Và rất nhiều điều hấp dẫn khác",
+        extraLinks: [
+          { label: "Đào tạo đa ngành" },
+          { label: "Cơ sở vật chất tốt" },
+          { label: "Vị trí trung tâm" },
+          { label: "Dịch vụ hỗ trợ sinh viên" }
+        ]
       }
     }
   }
-};
+}
 
 // Utility function to merge partial theme with default theme
 export const mergeTheme = (partialTheme: Partial<ThemeConfig>): ThemeConfig => {
@@ -232,12 +432,23 @@ export const mergeTheme = (partialTheme: Partial<ThemeConfig>): ThemeConfig => {
       contactInfo: {
         ...defaultTheme.content.contactInfo,
         ...partialTheme.content?.contactInfo
-      }
+      },
+      whyChoose: {
+        ...defaultTheme.content.whyChoose,
+        ...partialTheme.content?.whyChoose,
+        items:
+          partialTheme.content?.whyChoose?.items ??
+          defaultTheme.content.whyChoose.items,
+        extraLinks:
+          partialTheme.content?.whyChoose?.extraLinks ??
+          defaultTheme.content.whyChoose.extraLinks,
+      },
     },
     navigation: {
       ...defaultTheme.navigation,
       ...partialTheme.navigation
-    }
+    },
+
   };
 };
 
@@ -245,7 +456,7 @@ export const mergeTheme = (partialTheme: Partial<ThemeConfig>): ThemeConfig => {
 export const applyTheme = (theme: ThemeConfig | Partial<ThemeConfig>) => {
   const root = document.documentElement;
   const fullTheme = 'colors' in theme && theme.colors ? theme as ThemeConfig : mergeTheme(theme);
-  
+
   // Apply CSS custom properties
   root.style.setProperty('--primary-color', fullTheme.colors.primary);
   root.style.setProperty('--secondary-color', fullTheme.colors.secondary);

@@ -1,21 +1,31 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-
 // Components
 import Header from './components/Header/Header';
 import AboutSection from './components/AboutSection/AboutSection';
 import GallerySection from './components/GallerySection/GallerySection';
 import Footer from './components/Footer/Footer';
-
+import AdmissionsSection from './components/AdmissionsSection/AdmissionsSection';
+import WhyChooseSection from './components/AdmissionsSection/WhyChooseSection';
+import { admissionsData, whyChooseData } from './data/admissions';
 // Theme configuration
 import { defaultTheme, applyTheme } from './config/theme';
 
 // Pages
 const HomePage = () => (
   <>
-    <AboutSection 
+    <Header
+      backgroundImage={defaultTheme.images.heroBackground}
+      logo={defaultTheme.images.logo}
+      schoolName={defaultTheme.content.schoolName}
+      schoolNameEn={defaultTheme.content.schoolNameEn}
+      navItems={defaultTheme.navigation.items}
+      coreValuesTitle={defaultTheme.content.coreValuesTitle}
+      coreValuesText={defaultTheme.content.coreValuesText}
+    />
+    <AboutSection
       title={defaultTheme.content.aboutTitle}
       description={defaultTheme.content.aboutDescription}
       principalName={defaultTheme.content.principalName}
@@ -25,7 +35,7 @@ const HomePage = () => (
       principalImage={defaultTheme.images.principalImage}
       principalImageSize={defaultTheme.imageSizes.principalImage}
     />
-    <GallerySection 
+    <GallerySection
       images={defaultTheme.images.galleryImages.map((src, index) => ({
         src,
         alt: `Gallery Image ${index + 1}`,
@@ -55,12 +65,24 @@ const FacultyPage = () => (
 );
 
 const AdmissionsPage = () => (
-  <div className="page-content">
-    <div className="container py-5">
-      <h1>Tuyển sinh</h1>
-      <p>Thông tin tuyển sinh...</p>
-    </div>
-  </div>
+  <>
+    <Header
+      backgroundImage={defaultTheme.images.heroBackground}
+      logo={defaultTheme.images.logo}
+      schoolName={defaultTheme.content.schoolName}
+      schoolNameEn={defaultTheme.content.schoolNameEn}
+      navItems={defaultTheme.navigation.items}
+      coreValuesTitle={defaultTheme.content.coreValuesTitle}
+      coreValuesText={defaultTheme.content.coreValuesText}
+    />
+    <AdmissionsSection
+      admissionsData={admissionsData}
+    />
+    <WhyChooseSection
+      whyChooseData={whyChooseData}
+      ctaButtonText={admissionsData.ctaButtonText}
+    />
+  </>
 );
 
 const ContactPage = () => (
@@ -88,15 +110,8 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
+    <Router>
       <div className="App">
-        <Header
-          backgroundImage={defaultTheme.images.heroBackground}
-          logo={defaultTheme.images.logo}
-          schoolName={defaultTheme.content.schoolName}
-          schoolNameEn={defaultTheme.content.schoolNameEn}
-          navItems={defaultTheme.navigation.items}
-        />
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -112,7 +127,7 @@ function App() {
             <Route path="/facilities" element={<AboutPage />} />
           </Routes>
         </main>
-        <Footer 
+        <Footer
           logo={defaultTheme.images.logo}
           schoolName={defaultTheme.content.schoolName}
           schoolNameEn={defaultTheme.content.schoolNameEn}
@@ -122,8 +137,7 @@ function App() {
           email={defaultTheme.content.contactInfo.email}
         />
       </div>
-      </BrowserRouter>
-    
+    </Router>
   );
 }
 

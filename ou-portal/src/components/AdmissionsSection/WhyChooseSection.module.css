@@ -1,0 +1,63 @@
+.whyChooseSection {
+  padding: 60px 0;
+  background: #fff;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #f7b500; /* vàng */
+}
+
+.ctaHighlight {
+  display: inline-block;
+  color: red;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.itemRow {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 30px;
+}
+
+.itemTitle {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #0070c0;
+}
+
+.itemDescription {
+  margin-top: 10px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.itemImageContainer {
+  max-width: 300px;
+  margin: auto;
+}
+
+.imageTitleText {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.ctaButton {
+  background: #f7b500;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  background: #e09e00;
+}
