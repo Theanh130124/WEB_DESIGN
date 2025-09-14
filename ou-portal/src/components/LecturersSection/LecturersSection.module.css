@@ -1,0 +1,396 @@
+/* LecturersSection.module.css */
+.lecturersSection {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f8fbff 0%, #edf4ff 100%);
+  font-family: "Inter", "Segoe UI", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.lecturersSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff3b30, #f7b500, #1f73f0);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.sectionTitle {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+  color: #0f1e46;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionTitle::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 5px;
+  background: linear-gradient(90deg, #ff3b30, #f7b500);
+  border-radius: 3px;
+}
+
+.sectionSubtitle {
+  font-size: 1.2rem;
+  color: #516285;
+  margin-top: 24px;
+  font-weight: 500;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.grid {
+  row-gap: 30px;
+  margin-bottom: 60px;
+}
+
+.col {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.card {
+  width: 100%;
+  max-width: 380px;
+  min-height: 480px;
+  background: #fff;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+  padding: 30px 25px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  transform: translateY(0);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 20px 40px rgba(31, 115, 240, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  border-color: rgba(31, 115, 240, 0.2);
+}
+
+.card.active {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.cardInner {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.avatarContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.avatarGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(31, 115, 240, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .avatarGlow {
+  opacity: 1;
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+.avatarWrap {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff3b30, #f7b500);
+  padding: 8px;
+  box-shadow: 0 8px 20px rgba(255, 59, 48, 0.25);
+  transition: all 0.3s ease;
+}
+
+.card:hover .avatarWrap {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(255, 59, 48, 0.4);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  position: relative;
+  z-index: 2;
+}
+
+.avatarOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 59, 48, 0.2), rgba(247, 181, 0, 0.2));
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .avatarOverlay {
+  opacity: 1;
+}
+
+.degreeBadge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: linear-gradient(135deg, #1f73f0, #0053cc);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(31, 115, 240, 0.3);
+  transform: translateY(5px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.card:hover .degreeBadge {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.meta {
+  text-align: center;
+  padding: 0 10px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f1e46;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.field, .role {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  color: #516285;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.fieldIcon, .roleIcon {
+  font-size: 1.2rem;
+}
+
+.role {
+  font-weight: 600;
+  color: #1f73f0;
+  font-size: 1.05rem;
+}
+
+.cardHoverEffect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(31, 115, 240, 0.03), rgba(255, 59, 48, 0.03));
+  border-radius: 24px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .cardHoverEffect {
+  opacity: 1;
+}
+
+.ctaContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.ctaButton {
+  background: linear-gradient(135deg, #1f73f0, #0053cc);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 16px 32px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(31, 115, 240, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.ctaButton:hover::before {
+  left: 100%;
+}
+
+.ctaButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(31, 115, 240, 0.4);
+}
+
+.buttonIcon {
+  font-size: 1.2rem;
+}
+
+/* Responsive */
+@media (max-width: 1199.98px) {
+  .card {
+    max-width: 340px;
+    min-height: 460px;
+  }
+  
+  .avatarWrap {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .sectionTitle { 
+    font-size: 2.4rem; 
+  }
+  
+  .grid { 
+    row-gap: 25px; 
+  }
+  
+  .col {
+    margin-bottom: 25px;
+  }
+  
+  .card {
+    max-width: 100%;
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .lecturersSection { 
+    padding: 60px 0; 
+  }
+  
+  .sectionTitle { 
+    font-size: 2rem; 
+  }
+  
+  .sectionSubtitle { 
+    font-size: 1.1rem; 
+  }
+  
+  .ctaContainer { 
+    flex-direction: column; 
+    align-items: center; 
+  }
+  
+  .ctaButton { 
+    width: 280px; 
+    justify-content: center; 
+  }
+  
+  .avatarWrap {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .name {
+    font-size: 1.3rem;
+  }
+  
+  .field, .role {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .sectionTitle { 
+    font-size: 1.8rem; 
+  }
+  
+  .card { 
+    min-height: 380px;
+    padding: 20px 15px;
+  }
+  
+  .avatarWrap { 
+    width: 120px; 
+    height: 120px; 
+  }
+  
+  .degreeBadge {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+}
