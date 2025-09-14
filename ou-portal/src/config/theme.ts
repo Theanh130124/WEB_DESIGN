@@ -85,7 +85,7 @@ export const defaultTheme: ThemeConfig = {
   images: {
     logo: 'default/logo-default.jpg',
     heroBackground: 'default/themeheader.jpg',
-    principalImage: '/principal.jpg',
+    principalImage: 'default/GS-Nguyen-Minh-Ha.jpg',
     galleryImages: [
       '/gallery/school-building-1.jpg',
       '/gallery/school-building-2.jpg',

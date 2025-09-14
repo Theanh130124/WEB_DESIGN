@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container, Row, Col, Button } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Header.module.css';
 
 interface HeaderProps {
@@ -39,26 +40,54 @@ const Header: React.FC<HeaderProps> = ({
   overlayOpacity = 0.7
 }) => {
   const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  useEffect(() => {
+    // Hiệu ứng load trang
+    setIsLoaded(true);
+    
+    // Hiệu ứng scroll
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  
+  // Tách coreValuesText thành các từ để animate riêng lẻ
+  const coreValuesWords = coreValuesText.split(' ');
   
   return (
     <div className={styles.headerSection}>
-      {/* Background image with overlay */}
-      <div 
+      {/* Background image với hiệu ứng parallax */}
+      <motion.div 
         className={styles.headerBackground}
         style={{
           backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, ${overlayOpacity}), rgba(0, 0, 0, ${overlayOpacity})), url(${backgroundImage})`
         }}
-      ></div>
+        initial={{ scale: 1.1 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+      ></motion.div>
       
-      {/* Navigation */}
-      <div className={styles.headerNavigation}>
+      {/* Navigation với hiệu ứng xuất hiện khi scroll */}
+      <motion.div 
+        className={`${styles.headerNavigation} ${isScrolled ? styles.scrolled : ''}`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <Container>
           <Navbar expand="lg" className={styles.headerNavbar}>
             <Navbar.Brand className={styles.headerBrand}>
-              <img 
+              <motion.img 
                 src={logo} 
                 alt="Logo" 
                 className={styles.headerLogo}
+                whileHover={{ rotate: 5, scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
               />
               <div className={styles.headerSchoolNames}>
                 <div className={styles.headerSchoolName}>{schoolName}</div>
@@ -79,8 +108,24 @@ const Header: React.FC<HeaderProps> = ({
                       to={item.path}
                       className={`${styles.headerNavLink} ${isActive ? styles.active : ''}`}
                     >
-                      {item.label}
-                      {isActive && <div className={styles.navIndicator}></div>}
+                      <motion.span
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        whileHover={{ 
+                          scale: 1.05,
+                          transition: { type: "spring", stiffness: 400, damping: 10 }
+                        }}
+                      >
+                        {item.label}
+                      </motion.span>
+                      {isActive && (
+                        <motion.div 
+                          className={styles.navIndicator}
+                          layoutId="navIndicator"
+                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        />
+                      )}
                     </Nav.Link>
                   );
                 })}
@@ -88,25 +133,58 @@ const Header: React.FC<HeaderProps> = ({
             </Navbar.Collapse>
           </Navbar>
         </Container>
-      </div>
+      </motion.div>
       
-      {/* Header Content */}
+      {/* Header Content với hiệu ứng typewriter và từ xuất hiện tuần tự */}
       <Container className={styles.headerContentContainer}>
         <Row>
           <Col lg={12}>
             <div className={styles.coreValuesSection}>
-              <div className={styles.coreValuesTitle}>
-                {coreValuesTitle}
-              </div>
-              <div className={styles.coreValuesText}>
-                {coreValuesText}
-              </div>
-              <Button 
-                href={buttonLink}
-                className={styles.headerContactButton}
+              <motion.div 
+                className={styles.coreValuesTitle}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
               >
-                {buttonText}
-              </Button>
+                {coreValuesTitle}
+              </motion.div>
+              <div className={styles.coreValuesText}>
+                {coreValuesWords.map((word, index) => (
+                  <motion.span
+                    key={index}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ 
+                      duration: 0.3, 
+                      delay: index * 0.05 + 0.5,
+                    }}
+                    whileHover={{ 
+                      scale: 1.1,
+                      color: "#0193DC",
+                      transition: { duration: 0.2 }
+                    }}
+                  >
+                    {word}{" "}
+                  </motion.span>
+                ))}
+              </div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 1 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { type: "spring", stiffness: 400, damping: 10 }
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button 
+                  href={buttonLink}
+                  className={styles.headerContactButton}
+                >
+                  {buttonText}
+                </Button>
+              </motion.div>
             </div>
           </Col>
         </Row>

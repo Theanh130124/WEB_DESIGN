@@ -1,4 +1,6 @@
 import React from 'react';
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import { motion, Variants } from 'framer-motion';
 import styles from './AboutSection.module.css';
 
 interface InfoCard {
@@ -19,6 +21,96 @@ interface AboutSectionProps {
   principalDescription?: string;
   principalImage?: string;
 }
+
+// Animation variants với kiểu được định nghĩa đúng
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
+
+const cardVariants: Variants = {
+  hidden: { scale: 0.9, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  },
+  hover: {
+    y: -10,
+    boxShadow: "0px 10px 25px rgba(0, 0, 0, 0.1)",
+    transition: {
+      duration: 0.3,
+      ease: "easeOut"
+    }
+  }
+};
+
+const imageVariants: Variants = {
+  hidden: { x: -50, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut"
+    }
+  }
+};
+
+const textVariants: Variants = {
+  hidden: { x: 50, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut"
+    }
+  }
+};
+
+const buttonVariants: Variants = {
+  hidden: { scale: 0 },
+  visible: {
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 15
+    }
+  },
+  hover: {
+    scale: 1.05,
+    backgroundColor: "#0178B8",
+    transition: {
+      duration: 0.3
+    }
+  },
+  tap: {
+    scale: 0.95
+  }
+};
 
 const AboutSection: React.FC<AboutSectionProps> = ({
   title = 'Giới thiệu Trường',
@@ -102,66 +194,137 @@ const AboutSection: React.FC<AboutSectionProps> = ({
     }
   ]
 }) => {
+  // Sắp xếp lại thứ tự các thẻ: Cơ sở vật chất trước, sau đó đến Lịch sử
+  const sortedInfoCards = [...infoCards];
+  const facilityIndex = sortedInfoCards.findIndex(card => card.title === 'Cơ sở vật chất');
+  const historyIndex = sortedInfoCards.findIndex(card => card.title === 'Lịch sử');
+  
+  // Nếu cả hai thẻ đều tồn tại, đảo vị trí để Cơ sở vật chất đứng trước Lịch sử
+  if (facilityIndex !== -1 && historyIndex !== -1 && facilityIndex > historyIndex) {
+    const temp = sortedInfoCards[facilityIndex];
+    sortedInfoCards[facilityIndex] = sortedInfoCards[historyIndex];
+    sortedInfoCards[historyIndex] = temp;
+  }
+
   return (
-    <div className={styles.aboutSection}>
+    <motion.div 
+      className={styles.aboutSection}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={containerVariants}
+    >
       <div className={styles.headerBg}></div>
       
-      {/* Principal Message Section */}
-      <div className={styles.principalSection}>
-        <div className={styles.videoContainer}>
-          <div className={styles.videoBg}>
-            <img 
-              src={principalImage} 
-              alt="Principal" 
-              className={styles.principalImage}
-            />
-            <div className={styles.videoOverlay}></div>
-          </div>
-        </div>
-        
-        <div className={styles.principalContent}>
-          <h2 className={styles.principalMessage}>
-            {principalMessage}
-          </h2>
-          <h3 className={styles.principalName}>
-            {principalName} – {principalTitle}
-          </h3>
-          <p className={styles.principalDescription}>
-            {principalDescription}
-          </p>
-          <a href={buttonLink} className={styles.principalButton}>
-            {buttonText}
-          </a>
-        </div>
-      </div>
-
-      {/* School Introduction Section */}
-      <div className={styles.schoolIntroSection}>
-        <div className={styles.introContent}>
-          <h2 className={styles.introTitle}>
-            {title}
-          </h2>
-          <p className={styles.introDescription}>
-            {description}
-          </p>
-          <a href={buttonLink} className={styles.introButton}>
-            {buttonText}
-          </a>
-        </div>
-        
-        <div className={styles.infoCardsContainer}>
-          {infoCards.map((card, index) => (
-            <div key={index} className={styles.infoCard}>
-              <div className={styles.cardIcon}>
-                {card.icon}
+      <Container className="position-relative">
+        {/* Principal Message Section */}
+        <Row className={`${styles.principalSection} mb-5`}>
+          <Col lg={6} className="mb-4 mb-lg-0">
+            <motion.div 
+              className={styles.videoContainer}
+              variants={imageVariants}
+            >
+              <div className={styles.videoBg}>
+                <img 
+                  src={principalImage} 
+                  alt="Principal" 
+                  className={styles.principalImage}
+                />
+                <div className={styles.videoOverlay}></div>
               </div>
-              <h5 className={styles.cardTitle}>{card.title}</h5>
-              <p className={styles.cardDescription}>{card.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+            </motion.div>
+          </Col>
+          <Col lg={6}>
+            <motion.div 
+              className={styles.principalContent}
+              variants={textVariants}
+            >
+              <motion.h2 
+                className={styles.principalMessage}
+                variants={itemVariants}
+              >
+                {principalMessage}
+              </motion.h2>
+              <motion.h3 
+                className={styles.principalName}
+                variants={itemVariants}
+              >
+                {principalName} – {principalTitle}
+              </motion.h3>
+              <motion.p 
+                className={styles.principalDescription}
+                variants={itemVariants}
+              >
+                {principalDescription}
+              </motion.p>
+              <motion.a 
+                href={buttonLink} 
+                className={styles.principalButton}
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                {buttonText}
+              </motion.a>
+            </motion.div>
+          </Col>
+        </Row>
+
+        {/* School Introduction Section */}
+        <Row className={styles.schoolIntroSection}>
+          <Col md={5} lg={4} className="mb-4 mt-4 mb-md-0">
+            <motion.div 
+              className={styles.introContent}
+              variants={textVariants}
+            >
+              <motion.h2 
+                className={styles.introTitle}
+                variants={itemVariants}
+              >
+                {title}
+              </motion.h2>
+              <motion.p 
+                className={styles.introDescription}
+                variants={itemVariants}
+              >
+                {description}
+              </motion.p>
+              <motion.a 
+                href={buttonLink} 
+                className={styles.introButton}
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                {buttonText}
+              </motion.a>
+            </motion.div>
+          </Col>
+          <Col md={7} lg={7}>
+            <Row>
+              {sortedInfoCards.map((card, index) => (
+                <Col sm={6} key={index} className="mb-4">
+                  <motion.div
+                    variants={cardVariants}
+                    whileHover="hover"
+                  >
+                    <Card className={styles.infoCard}>
+                      <Card.Body>
+                        <div className={styles.cardIcon}>
+                          {card.icon}
+                        </div>
+                        <Card.Title className={styles.cardTitle}>{card.title}</Card.Title>
+                        <Card.Text className={styles.cardDescription}>{card.description}</Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </motion.div>
+                </Col>
+              ))}
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+    </motion.div>
   );
 };
 

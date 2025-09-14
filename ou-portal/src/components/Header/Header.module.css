@@ -83,7 +83,6 @@
 .headerNavLinks {
   gap: 32px;
 }
-
 .headerNavLink {
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
@@ -101,7 +100,54 @@
   transition: all 0.3s ease;
 }
 
-/* Hiệu ứng hover cho các mục không active */
+/* Gạch chân cho các mục không active khi hover */
+.headerNavLink:not(.active):hover::after {
+  content: '';
+  width: 16px;
+  height: 2px;
+  background: #FFFFFF;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.headerNavLink.active {
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  pointer-events: none;
+  cursor: default;
+}
+
+/* Gạch chân cho mục active - luôn hiển thị */
+.navIndicator {
+  width: 16px;
+  height: 2px;
+  background: #FFFFFF;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+/* Khi hover vào menu, các mục active sẽ mất gạch chân */
+.headerNavLinks:hover .headerNavLink.active .navIndicator {
+  opacity: 0;
+}
+
+/* Khi hover vào chính mục active thì hiện lại gạch chân */
+.headerNavLink.active:hover .navIndicator {
+  opacity: 1;
+}
+
+/* Khi hover vào menu, các mục active trở về trạng thái bình thường */
+.headerNavLinks:hover .headerNavLink.active {
+  color: #CECDCD !important;
+  font-weight: 400 !important;
+}
+
+/* Khi hover vào chính mục active thì giữ trạng thái active */
+.headerNavLink.active:hover {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+/* Hiệu ứng khi hover vào các mục không active */
 .headerNavLink:not(.active):hover {
   color: #FFFFFF !important;
   font-weight: 700 !important;
@@ -115,22 +161,6 @@
   border-radius: 4px;
   margin-top: 8px;
 }
-
-.headerNavLink.active {
-  font-weight: 700 !important;
-  color: #FFFFFF !important;
-}
-
-/* Khi hover vào menu, các mục active sẽ trở về trạng thái bình thường */
-.headerNavLinks:hover .headerNavLink.active {
-  color: #CECDCD !important;
-  font-weight: 400 !important;
-}
-
-.headerNavLinks:hover .headerNavLink.active .navIndicator {
-  opacity: 0;
-}
-
 .navIndicator {
   width: 16px;
   height: 2px;
@@ -262,3 +292,26 @@
     font-size: 13px;
   }
 }
+/* Hiệu ứng cho navigation khi scroll */
+.headerNavigation.scrolled {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Hiệu ứng cho các từ trong coreValuesText khi hover */
+.coreValuesText span {
+  transition: color 0.2s ease;
+  cursor: default;
+}
+
+/* Đảm bảo các phần tử có thể nhận hiệu ứng */
+.headerBackground, .headerLogo, .headerNavLink span {
+  will-change: transform, opacity;
+}
+
+/* Hiệu ứng cho nút button */
+.headerContactButton {
+  transition: all 0.3s ease !important;
+}
+
