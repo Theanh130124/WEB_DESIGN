@@ -139,8 +139,8 @@ const GallerySection: React.FC<GallerySectionProps> = ({
       title: 'Modern Classroom'
     }
   ],
-  buttonText = 'Xem thêm',
-  buttonLink = '/gallery',
+
+
   imageSize = { width: '100%', height: '280px' }
 }) => {
   return (
@@ -216,15 +216,11 @@ const GallerySection: React.FC<GallerySectionProps> = ({
               variants={buttonContainerVariants}
               whileHover="hover"
             >
-              <Button 
-                href={buttonLink}
-                className="gallery-button"
-                size="lg"
-              >
-                {buttonText}
-              </Button>
             </motion.div>
           </Col>
+        </Row>
+        <Row className='mt-4 mb-4'>
+
         </Row>
       </Container>
     </motion.div>

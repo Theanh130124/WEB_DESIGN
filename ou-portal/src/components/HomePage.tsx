@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
               </div>
             ),
             title: 'Cơ sở vật chất',
-            description: 'Phòng học hiện đại, thư viện với 50.000 đầu sách, phòng thí nghiệm, phòng máy tính, khu thể thao...'
+            description: 'Cơ sở vật chất hiện đại với phòng học tiện nghi, thư viện hơn 50.000 đầu sách, phòng thí nghiệm và phòng máy tính. Bên cạnh đó, trường còn có khu thể thao và hệ thống e-learning phục vụ hiệu quả cho học tập và rèn luyện.'
           },
           {
             icon: (
@@ -31,7 +31,7 @@ const HomePage: React.FC = () => {
               </div>
             ),
             title: 'Lịch sử',
-            description: 'Thành lập ngày 15/06/1990...'
+            description: 'Thành lập ngày 15/06/1990 là viện Đạo tạo Mở rộng TP.Hồ Chí Minh, năm 1993 mang tên Trường Đại học Mở Bán Công TP.Hồ Chí Minh, năm 2006 là trường công lập lấy tên Trường Đại học Mở TP.Hồ Chí Minh'
           },
           {
             icon: (
@@ -40,7 +40,7 @@ const HomePage: React.FC = () => {
               </div>
             ),
             title: 'Địa chỉ',
-            description: 'Địa chỉ 1: 97 Võ Văn Tần, P.Xuân Hòa, TP Hồ Chí Minh.'
+            description: 'Địa chỉ 1: 97 Võ Văn Tần, P.Xuân Hòa, TP.HCM  Địa chỉ 2: 35-37 Hồ Hảo Hớn P.Cầu Ông Lãnh  Địa chỉ 3: KDC Nhơn Đức, xã Hiệp Phước, TP.HCM.                                                                            '
           },
           {
             icon: (
@@ -49,7 +49,7 @@ const HomePage: React.FC = () => {
               </div>
             ),
             title: 'Thành tựu',
-            description: 'Top 1201-1500 Thế giới theo Times Higher Education năm 2025'
+            description: 'Top 1201-1500 Thế giới theo Times Higher Education năm 2025 . Nhóm 501–600 đại học tốt nhất châu Á (THE Asia University Rankings 2025  Đã đạt chứng nhận đảm bảo chất lượng giáo dục MOET Việt Nam cho 5 ngành đại học'
           }
         ]}
       />
@@ -88,8 +88,7 @@ const HomePage: React.FC = () => {
             title: 'Lễ tốt nghiệp'
           }
         ]}
-        buttonText="Xem thêm"
-        buttonLink="/gallery"
+
         imageSize={{ width: '100%', height: '280px' }}
       />
     </div>
