@@ -3,6 +3,8 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Styles/HistoryVRSection.module.css";
+import { Col, Container, Row } from "react-bootstrap";
+
 
 interface HistoryEvent {
   image: string;
@@ -52,7 +54,7 @@ const events: HistoryEvent[] = [
 const HistoryVRSection: React.FC = () => {
   const mountRef = useRef<HTMLDivElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
   const [showPrintTitle, setShowPrintTitle] = useState(false);
   const sceneRef = useRef<THREE.Scene | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
@@ -64,6 +66,13 @@ const HistoryVRSection: React.FC = () => {
   const raycasterRef = useRef<THREE.Raycaster | null>(null);
   const mouseRef = useRef<THREE.Vector2 | null>(null);
 
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+const selectedIndexRef = useRef<number | null>(null);
+
+useEffect(() => {
+  selectedIndexRef.current = selectedIndex;
+}, [selectedIndex]);
+
   useEffect(() => {
     if (!mountRef.current) return;
 
@@ -71,7 +80,6 @@ const HistoryVRSection: React.FC = () => {
     sceneRef.current = scene;
 
     // Tạo nền 360 độ
-    const textureLoader = new THREE.TextureLoader();
     const sphereGeometry = new THREE.SphereGeometry(500, 60, 40);
     sphereGeometry.scale(-1, 1, 1);
     
@@ -123,8 +131,8 @@ const HistoryVRSection: React.FC = () => {
     scene.add(group);
     groupRef.current = group;
 
-    const radius = 8; // Giảm bán kính
-    const geometry = new THREE.PlaneGeometry(3, 2); // Giảm kích thước
+    const radius = 8;
+    const geometry = new THREE.PlaneGeometry(3, 2);
     
     // Khởi tạo raycaster và mouse
     const raycaster = new THREE.Raycaster();
@@ -184,7 +192,7 @@ const HistoryVRSection: React.FC = () => {
       const labelGeometry = new THREE.PlaneGeometry(3.5, 0.9);
       const labelMesh = new THREE.Mesh(labelGeometry, labelMaterial);
       labelMesh.position.set(0, -1.6, 0);
-      labelMesh.userData = { isLabel: true }; // Đánh dấu không clickable
+      labelMesh.userData = { isLabel: true };
 
       // Gom lại 1 group
       const itemGroup = new THREE.Group();
@@ -199,28 +207,25 @@ const HistoryVRSection: React.FC = () => {
       itemGroup.lookAt(0, 0, 0);
 
       group.add(itemGroup);
-      planesRef.current.push(plane); // Chỉ lưu plane chính để detect click
+      planesRef.current.push(plane);
     });
 
-    // Handle click - SỬA LẠI PHẦN QUAN TRỌNG
+    // Handle click
     const handleClick = (event: MouseEvent) => {
-      if (!mountRef.current || !cameraRef.current || !raycasterRef.current) return;
+      if (!mountRef.current || !cameraRef.current || !raycasterRef.current || !mouseRef.current) return;
 
       const rect = mountRef.current.getBoundingClientRect();
-      mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      mouseRef.current.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      mouseRef.current.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-      raycasterRef.current.setFromCamera(mouse, cameraRef.current);
+      raycasterRef.current.setFromCamera(mouseRef.current, cameraRef.current);
       
-      // Chỉ kiểm tra các plane có thể click (bỏ qua label)
+      // Chỉ kiểm tra các plane có thể click
       const clickableObjects = planesRef.current.filter(plane => plane.userData.isClickable);
       const intersects = raycasterRef.current.intersectObjects(clickableObjects);
 
-      console.log("Click detected, intersects:", intersects.length);
-
       if (intersects.length > 0) {
         const index = intersects[0].object.userData.index;
-        console.log("Clicked on image:", events[index].title);
         
         setSelectedIndex(index);
         setActiveIndex(index);
@@ -265,16 +270,17 @@ const HistoryVRSection: React.FC = () => {
     };
 
     renderer.domElement.addEventListener("click", handleClick, { passive: false });
-
+    
     // Animate
     const animate = () => {
-      requestAnimationFrame(animate);
+      animationIdRef.current = requestAnimationFrame(animate);
       
       if (controlsRef.current) {
         controlsRef.current.update();
       }
 
-      if (selectedIndex === null && groupRef.current) {
+      // SỬA LỖI: Chỉ xoay khi không có item nào được chọn (sử dụng state trực tiếp)
+      if (selectedIndexRef.current === null && groupRef.current) {
         groupRef.current.rotation.y += 0.002;
       }
 
@@ -310,14 +316,14 @@ const HistoryVRSection: React.FC = () => {
       window.removeEventListener("keydown", handleKeyDown);
       
       if (rendererRef.current?.domElement) {
-        rendererRef.current.domElement.removeEventListener("click", handleClick);
+        renderer.domElement.removeEventListener("click", handleClick);
       }
       
       if (animationIdRef.current) {
         cancelAnimationFrame(animationIdRef.current);
       }
     };
-  }, []);
+  }, [selectedIndex]); // QUAN TRỌNG: Thêm selectedIndex vào dependency
 
   const easeInOutCubic = (t: number): number => {
     return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -359,72 +365,95 @@ const HistoryVRSection: React.FC = () => {
     }
   };
 
+
+
+
   return (
-    <div className={styles.historyVRSection}>
-      <div ref={mountRef} className={styles.canvasContainer}></div>
-
-      {selectedIndex !== null ? (
-        <div className={styles.zoomedOverlay}>
-          <motion.div 
-            className={styles.zoomedImageContainer}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.5 }}
-          >
-            <img 
-              src={events[selectedIndex].image} 
-              alt={events[selectedIndex].title}
-              className={styles.zoomedImage}
-              onError={(e) => {
-                console.error("Image failed to load:", events[selectedIndex].image);
-                e.currentTarget.src = "/default/fallback-image.jpg";
-              }}
-            />
-            <div className={styles.zoomedContent}>
-              <h2>{events[selectedIndex].title}</h2>
-              <p>{events[selectedIndex].description}</p>
-              <button className={styles.exitButton} onClick={handleExitZoom}>
-                Thoát chế độ xem
-              </button>
+    <Container fluid style={{ marginTop: "20px", padding: "0" }}>
+      <Row className="mb-4 mt-4">
+        <Col className="text-center">
+          {/* Sử dụng styles.mainTitle thay vì class thông thường */}
+          <h1 className={styles.mainTitle}>
+            Triển lãm nhìn lại 35 năm hình thành và phát triển <br />
+            Đại học Mở TP.HCM
+          </h1>
+        </Col>
+      </Row>
+  
+      <Row>
+        <Col style={{ padding: "0" }}>
+          <div className={styles.historyVRSection}>
+            <div ref={mountRef} className={styles.canvasContainer}></div>
+  
+            {selectedIndex !== null ? (
+              <div className={styles.zoomedOverlay}>
+                <motion.div
+                  className={styles.zoomedImageContainer}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <img
+                    src={events[selectedIndex].image}
+                    alt={events[selectedIndex].title}
+                    className={styles.zoomedImage}
+                    onError={(e) => {
+                      console.error("Image failed to load:", events[selectedIndex].image);
+                      e.currentTarget.src = "/default/fallback-image.jpg";
+                    }}
+                  />
+                  <div className={styles.zoomedContent}>
+                    <h2>{events[selectedIndex].title}</h2>
+                    <p>{events[selectedIndex].description}</p>
+                    <button className={styles.exitButton} onClick={handleExitZoom}>
+                      Thoát chế độ xem
+                    </button>
+                  </div>
+                </motion.div>
+              </div>
+            ) : (
+              <AnimatePresence>
+                <motion.div
+                  key="info"
+                  className={styles.infoBox}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -40 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <h2>{events[activeIndex].title}</h2>
+                  <p>{events[activeIndex].description}</p>
+                </motion.div>
+              </AnimatePresence>
+            )}
+  
+            {showPrintTitle && (
+              <motion.div
+                className={styles.printTitle}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.2 }}
+                transition={{ duration: 0.3 }}
+              >
+                <span>
+                  Đã chọn: {events[selectedIndex !== null ? selectedIndex : activeIndex].title}
+                </span>
+              </motion.div>
+            )}
+  
+            <div className={styles.instructions}>
+              <p>Click vào hình ảnh để xem chi tiết</p>
+              <p>Kéo để xoay môi trường 360°</p>
+              <p>Nhấn ESC để thoát chế độ xem ảnh</p>
             </div>
-          </motion.div>
-        </div>
-      ) : (
-        <AnimatePresence>
-          <motion.div
-            key="info"
-            className={styles.infoBox}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -40 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2>{events[activeIndex].title}</h2>
-            <p>{events[activeIndex].description}</p>
-          </motion.div>
-        </AnimatePresence>
-      )}
-
-      {showPrintTitle && (
-        <motion.div
-          className={styles.printTitle}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.2 }}
-          transition={{ duration: 0.3 }}
-        >
-          <span>Đã chọn: {events[selectedIndex !== null ? selectedIndex : activeIndex].title}</span>
-        </motion.div>
-      )}
-
-      <div className={styles.instructions}>
-        <p>Click vào hình ảnh để xem chi tiết</p>
-        <p>Kéo để xoay môi trường 360°</p>
-        <p>Nhấn ESC để thoát chế độ xem ảnh</p>
-      </div>
-    </div>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
+  
 };
+
 
 export default HistoryVRSection;
