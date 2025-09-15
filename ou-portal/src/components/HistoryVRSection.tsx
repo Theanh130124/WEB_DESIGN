@@ -15,31 +15,37 @@ const events: HistoryEvent[] = [
     image: "/default/lichsuhinhthanh1.jpg",
     title: "Ngày 15/6/1990",
     description:
-      "Bộ trưởng Bộ Giáo dục và Đào tạo ban hành Quyết định số 451/TCCB thành lập Viện Đào tạo mở rộng trực thuộc Trường Cán bộ quản lý đại học – Trung học chuyên nghiệp và Dạy nghề."
+      "Ngày 15/6/1990, Bộ trưởng Bộ Giáo dục và Đào tạo ban hành Quyết định số 451/TCCB thành lập Viện Đào tạo mở rộng trực thuộc Trường Cán bộ quản lý đại học – Trung học chuyên nghiệp và Dạy nghề."
   },
   {
     image: "/default/lichsuhinhthanh2.jpg",
     title: "Ngày 26/7/1993",
     description:
-      "Thủ Tướng Chính phủ quyết định thành lập Đại học Mở bán công TP.HCM trên cơ sở Viện Đào tạo mở rộng II, với chức năng đào tạo từ xa, đào tạo tại chỗ, và tại các điểm vệ tinh."
+      "Với sự phát triển nhanh chóng và nhu cầu học tập của xã hội, ngày 26/7/1993 Thủ Tướng Chính phủ quyết định thành lập Đại học Mở bán công TP. Hồ Chí Minh trên cơ sở Viện Đào tạo mở rộng II Thành phố Hồ Chí Minh, với chức năng là đào tạo từ xa, đào tạo tại chỗ, đào tạo tại các điểm vệ tinh, … nhằm đáp ứng nhu cầu học tập đa dạng của xã hội, góp phần tăng cường đội ngũ cán bộ khoa học – kỹ thuật cho đất nước."
   },
   {
-    image: "/default/lichsuhinhthanh3.jpg",
+    image: "/default/lichsuhinhthanh3.png",
     title: "Ngày 22/6/2006",
     description:
-      "Thủ Tướng Chính phủ ban hành Quyết định số 146/2006/QĐ-TTg chuyển loại hình Trường Đại học Mở bán công TP.HCM sang công lập, trực thuộc Bộ Giáo dục và Đào tạo."
+      "Ngày 22/6/2006, Thủ Tướng Chính phủ ban hành Quyết định số 146/2006/QĐ-TTg chuyển loại hình một số trường đại học và cao đẳng bán công, dân lập. Theo quyết định này, Trường Đại học Mở bán công TP. Hồ Chí Minh được chuyển sang trường đại học công lập và có tên gọi là Trường Đại học Mở TP. Hồ Chí Minh, là đơn vị sự nghiệp công lập trực thuộc Bộ Giáo dục và Đào tạo, được giao quyền tự chủ, tự chịu trách nhiệm về thực hiện nhiệm vụ, tổ chức bộ máy, biên chế và tài chính theo Nghị định số 43/2006/NĐ-CP ngày 25/4/2006 của Chính phủ."
   },
   {
     image: "/default/lichsuhinhthanh4.jpg",
-    title: "Nghị quyết số 77/NQ-CP (2014 – 2017)",
-    description:
-      "Trường Đại học Mở TP.HCM được thực hiện tự chủ, tự chịu trách nhiệm về đào tạo, tổ chức nhân sự, tài chính, học bổng, đầu tư và giám sát theo Nghị quyết số 77/NQ-CP."
+    title: "Ngày 24/10/2014",
+    description: `Theo Đề án đã được Thủ tướng Chính phủ phê duyệt, Trường Đại học Mở TP. Hồ Chí Minh được thực hiện tự chủ, tự chịu trách nhiệm về các nội dung:
+  1. Về việc thực hiện nhiệm vụ đào tạo và nghiên cứu khoa học.
+  2. Về tổ chức bộ máy, nhân sự.
+  3. Về tài chính.
+  4. Về chính sách học bổng, học phí.
+  5. Về đầu tư, mua sắm.
+  6. Về cơ chế giám sát.
+  7. Các quyền và nghĩa vụ khác theo quy định tại Nghị quyết số 77/NQ-CP ngày 24/10/2014 của Chính phủ …`
   },
   {
     image: "/default/lichsuhinhthanh5.jpg",
     title: "Ngày 12/6/2015",
     description:
-      "Thủ tướng Chính phủ ban hành Quyết định số 850/QĐ-TTg phê duyệt Đề án thí điểm đổi mới cơ chế hoạt động của Trường Đại học Mở TP.HCM giai đoạn 2015 – 2017."
+      "Ngày 12/6/2015 Thủ tướng Chính phủ ban hành Quyết định số 850/QĐ-TTg phê duyệt Đề án thí điểm đổi mới cơ chế hoạt động của Trường Đại học Mở TP. Hồ Chí Minh giai đoạn 2015 – 2017."
   }
 ];
 
@@ -130,13 +136,43 @@ const HistoryVRSection: React.FC = () => {
         opacity: 1
       });
       const plane = new THREE.Mesh(geometry, material);
-      plane.userData = { index: i, title: e.title };
+       plane.userData = { index: i, title: e.title };
+      const canvas = document.createElement("canvas");
+      canvas.width = 256;
+      canvas.height = 64;
+      const ctx = canvas.getContext("2d")!;
+      ctx.fillStyle = "rgba(26,35,126,0.8)"; // nền xanh tím
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.font = "bold 28px Arial";
+      ctx.fillStyle = "#fff";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("35 năm – Nhìn lại hành trình", canvas.width / 2, canvas.height / 2);
 
+    
+      const labelTexture = new THREE.CanvasTexture(canvas);
+      const labelMaterial = new THREE.MeshBasicMaterial({
+        map: labelTexture,
+        transparent: true,
+        side: THREE.DoubleSide
+      });
+      const labelGeometry = new THREE.PlaneGeometry(3.5, 0.7);
+      const labelMesh = new THREE.Mesh(labelGeometry, labelMaterial);
+    
+      // Gắn nhãn ngay dưới plane chính
+      labelMesh.position.set(0, -1.6, 0);
+    
+      // Gom lại 1 group để xoay cùng nhau
+      const itemGroup = new THREE.Group();
+      itemGroup.add(plane);
+      itemGroup.add(labelMesh);
+    
       const angle = (i / events.length) * Math.PI * 2;
-      plane.position.set(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
-      plane.lookAt(0, 0, 0);
-      group.add(plane);
-      planesRef.current.push(plane);
+      itemGroup.position.set(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
+      itemGroup.lookAt(0, 0, 0);
+    
+      group.add(itemGroup);
+      planesRef.current.push(plane); // chỉ lưu plane chính để raycaster detect
     });
 
     // Handle click
@@ -325,17 +361,7 @@ const HistoryVRSection: React.FC = () => {
         </AnimatePresence>
       )}
 
-      {showPrintTitle && (
-        <motion.div
-          className={styles.printTitle}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.2 }}
-          transition={{ duration: 0.3 }}
-        >
-          <span>Đã chọn: {events[selectedIndex !== null ? selectedIndex : activeIndex].title}</span>
-        </motion.div>
-      )}
+      
 
       <div className={styles.instructions}>
         <p>• Click vào hình ảnh để xem chi tiết</p>

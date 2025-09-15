@@ -31,7 +31,7 @@ const Header: React.FC<HeaderProps> = ({
     { label: 'Giảng viên', path: '/faculty' },
     { label: 'Tuyển sinh', path: '/admissions' },
     { label: 'Liên hệ', path: '/contact' },
-    { label: 'Tin tức', path: '/news' }
+    { label: 'Triển lãm lịch sử', path: '/history' }
   ],
   coreValuesTitle = 'GIÁ TRỊ CỐT LÕI',
   coreValuesText = 'Mở rộng tri thức, Gắn kết thực tiễn, Phục vụ cộng đồng, Chuyên nghiệp, hiệu quả, sáng tạo và thân thiện',

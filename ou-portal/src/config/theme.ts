@@ -221,7 +221,7 @@ export const defaultTheme: ThemeConfig = {
       { label: 'Giảng viên', path: '/faculty' },
       { label: 'Tuyển sinh', path: '/admissions' },
       { label: 'Liên hệ', path: '/contact' },
-      { label: 'Tin tức', path: '/news' }
+      { label: 'Triển lãm lịch sử', path: '/history' }
     ]
   }
 };
