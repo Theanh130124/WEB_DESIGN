@@ -419,9 +419,9 @@ const HistoryVRSection: React.FC = () => {
       )}
 
       <div className={styles.instructions}>
-        <p>• Click vào hình ảnh để xem chi tiết</p>
-        <p>• Kéo để xoay môi trường 360°</p>
-        <p>• Nhấn ESC để thoát chế độ xem ảnh</p>
+        <p>Click vào hình ảnh để xem chi tiết</p>
+        <p>Kéo để xoay môi trường 360°</p>
+        <p>Nhấn ESC để thoát chế độ xem ảnh</p>
       </div>
     </div>
   );
