@@ -53,7 +53,6 @@ const HistoryVRSection: React.FC = () => {
   const mountRef = useRef<HTMLDivElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [isZoomed, setIsZoomed] = useState(false);
   const [showPrintTitle, setShowPrintTitle] = useState(false);
   const sceneRef = useRef<THREE.Scene | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
@@ -76,13 +75,13 @@ const HistoryVRSection: React.FC = () => {
     const sphereGeometry = new THREE.SphereGeometry(500, 60, 40);
     sphereGeometry.scale(-1, 1, 1);
     
-    const panoramaTexture = textureLoader.load("/default/360-panorama.jpg", () => {
-      const panoramaMaterial = new THREE.MeshBasicMaterial({
-        map: panoramaTexture
-      });
-      const panoramaMesh = new THREE.Mesh(sphereGeometry, panoramaMaterial);
-      scene.add(panoramaMesh);
+    // Tạo panorama background đơn giản
+    const panoramaMaterial = new THREE.MeshBasicMaterial({
+      color: 0x2c3e50,
+      side: THREE.BackSide
     });
+    const panoramaMesh = new THREE.Mesh(sphereGeometry, panoramaMaterial);
+    scene.add(panoramaMesh);
 
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -93,7 +92,11 @@ const HistoryVRSection: React.FC = () => {
     camera.position.set(0, 0, 8);
     cameraRef.current = camera;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ 
+      antialias: true, 
+      alpha: true,
+      powerPreference: "high-performance"
+    });
     rendererRef.current = renderer;
     renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
     renderer.setClearColor(0x000000, 0);
@@ -104,13 +107,15 @@ const HistoryVRSection: React.FC = () => {
     controls.enableZoom = true;
     controls.enablePan = false;
     controls.rotateSpeed = 0.8;
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
 
     // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight.position.set(5, 5, 5);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    directionalLight.position.set(10, 10, 10);
     scene.add(directionalLight);
 
     // Group
@@ -118,8 +123,8 @@ const HistoryVRSection: React.FC = () => {
     scene.add(group);
     groupRef.current = group;
 
-    const radius = 12;
-    const geometry = new THREE.PlaneGeometry(4, 2.5);
+    const radius = 8; // Giảm bán kính
+    const geometry = new THREE.PlaneGeometry(3, 2); // Giảm kích thước
     
     // Khởi tạo raycaster và mouse
     const raycaster = new THREE.Raycaster();
@@ -127,86 +132,114 @@ const HistoryVRSection: React.FC = () => {
     const mouse = new THREE.Vector2();
     mouseRef.current = mouse;
 
+    // Tạo các plane với hình ảnh và label
     events.forEach((e, i) => {
-      const texture = new THREE.TextureLoader().load(e.image);
+      const texture = new THREE.TextureLoader().load(e.image, (texture) => {
+        texture.minFilter = THREE.LinearFilter;
+        texture.magFilter = THREE.LinearFilter;
+      });
+      
       const material = new THREE.MeshBasicMaterial({
         map: texture,
         side: THREE.DoubleSide,
         transparent: true,
         opacity: 1
       });
+      
       const plane = new THREE.Mesh(geometry, material);
-       plane.userData = { index: i, title: e.title };
+      plane.userData = { 
+        index: i, 
+        title: e.title,
+        isClickable: true 
+      };
+
+      // Tạo canvas cho label
       const canvas = document.createElement("canvas");
-      canvas.width = 256;
-      canvas.height = 64;
+      canvas.width = 512;
+      canvas.height = 128;
       const ctx = canvas.getContext("2d")!;
-      ctx.fillStyle = "rgba(26,35,126,0.8)"; // nền xanh tím
+      
+      // Vẽ nền label
+      ctx.fillStyle = "rgba(26, 35, 126, 0.9)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.font = "bold 28px Arial";
-      ctx.fillStyle = "#fff";
+      
+      // Vẽ viền
+      ctx.strokeStyle = "#ffffff";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(2, 2, canvas.width - 4, canvas.height - 4);
+      
+      // Vẽ text
+      ctx.font = "bold 40px Arial";
+      ctx.fillStyle = "#ffffff";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillText("35 năm – Nhìn lại hành trình", canvas.width / 2, canvas.height / 2);
+      ctx.fillText(e.title, canvas.width / 2, canvas.height / 2);
 
-    
       const labelTexture = new THREE.CanvasTexture(canvas);
       const labelMaterial = new THREE.MeshBasicMaterial({
         map: labelTexture,
         transparent: true,
         side: THREE.DoubleSide
       });
-      const labelGeometry = new THREE.PlaneGeometry(3.5, 0.7);
+      const labelGeometry = new THREE.PlaneGeometry(3.5, 0.9);
       const labelMesh = new THREE.Mesh(labelGeometry, labelMaterial);
-    
-      // Gắn nhãn ngay dưới plane chính
       labelMesh.position.set(0, -1.6, 0);
-    
-      // Gom lại 1 group để xoay cùng nhau
+      labelMesh.userData = { isLabel: true }; // Đánh dấu không clickable
+
+      // Gom lại 1 group
       const itemGroup = new THREE.Group();
       itemGroup.add(plane);
       itemGroup.add(labelMesh);
-    
+
       const angle = (i / events.length) * Math.PI * 2;
-      itemGroup.position.set(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
+      const x = Math.cos(angle) * radius;
+      const z = Math.sin(angle) * radius;
+      
+      itemGroup.position.set(x, 0, z);
       itemGroup.lookAt(0, 0, 0);
-    
+
       group.add(itemGroup);
-      planesRef.current.push(plane); // chỉ lưu plane chính để raycaster detect
+      planesRef.current.push(plane); // Chỉ lưu plane chính để detect click
     });
 
-    // Handle click
+    // Handle click - SỬA LẠI PHẦN QUAN TRỌNG
     const handleClick = (event: MouseEvent) => {
-      if (!mountRef.current || !cameraRef.current) return;
+      if (!mountRef.current || !cameraRef.current || !raycasterRef.current) return;
 
       const rect = mountRef.current.getBoundingClientRect();
       mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-      raycaster.setFromCamera(mouse, cameraRef.current);
-      const intersects = raycaster.intersectObjects(planesRef.current);
+      raycasterRef.current.setFromCamera(mouse, cameraRef.current);
+      
+      // Chỉ kiểm tra các plane có thể click (bỏ qua label)
+      const clickableObjects = planesRef.current.filter(plane => plane.userData.isClickable);
+      const intersects = raycasterRef.current.intersectObjects(clickableObjects);
+
+      console.log("Click detected, intersects:", intersects.length);
 
       if (intersects.length > 0) {
         const index = intersects[0].object.userData.index;
-        console.log("Clicked on image:", events[index].title); // Debug log
+        console.log("Clicked on image:", events[index].title);
+        
         setSelectedIndex(index);
         setActiveIndex(index);
-        setIsZoomed(true);
+        setShowPrintTitle(true);
         
-        // Di chuyển camera đến gần hình ảnh được chọn
+        setTimeout(() => setShowPrintTitle(false), 2000);
+
+        // Di chuyển camera
         const selectedPlane = planesRef.current[index];
         const targetPosition = new THREE.Vector3();
         selectedPlane.getWorldPosition(targetPosition);
         
-        // Điều chỉnh vị trí đích để camera nhìn rõ hình ảnh
-        const offset = new THREE.Vector3(0, 0, 3);
+        const offset = new THREE.Vector3(0, 0, 2);
         targetPosition.add(offset);
         
-        // Animation di chuyển camera
         const startPosition = cameraRef.current.position.clone();
         const startTime = performance.now();
-        const duration = 1000;
-        
+        const duration = 800;
+
         const animateCamera = (currentTime: number) => {
           const elapsed = currentTime - startTime;
           const progress = Math.min(elapsed / duration, 1);
@@ -228,24 +261,26 @@ const HistoryVRSection: React.FC = () => {
           cancelAnimationFrame(animationIdRef.current);
         }
         animationIdRef.current = requestAnimationFrame(animateCamera);
-
-        setShowPrintTitle(true);
-        setTimeout(() => setShowPrintTitle(false), 2000);
       }
     };
 
-    renderer.domElement.addEventListener("click", handleClick);
+    renderer.domElement.addEventListener("click", handleClick, { passive: false });
 
     // Animate
     const animate = () => {
       requestAnimationFrame(animate);
-      controls.update();
-
-      if (selectedIndex === null) {
-        group.rotation.y += 0.002;
+      
+      if (controlsRef.current) {
+        controlsRef.current.update();
       }
 
-      renderer.render(scene, camera);
+      if (selectedIndex === null && groupRef.current) {
+        groupRef.current.rotation.y += 0.002;
+      }
+
+      if (rendererRef.current && sceneRef.current && cameraRef.current) {
+        rendererRef.current.render(sceneRef.current, cameraRef.current);
+      }
     };
     animate();
 
@@ -258,20 +293,25 @@ const HistoryVRSection: React.FC = () => {
     window.addEventListener("keydown", handleKeyDown);
 
     const handleResize = () => {
-      if (!mountRef.current || !cameraRef.current) return;
+      if (!mountRef.current || !cameraRef.current || !rendererRef.current) return;
+      
       cameraRef.current.aspect = mountRef.current.clientWidth / mountRef.current.clientHeight;
       cameraRef.current.updateProjectionMatrix();
-      renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
+      rendererRef.current.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
     };
     window.addEventListener("resize", handleResize);
 
     return () => {
-      if (mountRef.current && renderer.domElement) {
-        mountRef.current.removeChild(renderer.domElement);
+      if (mountRef.current && rendererRef.current?.domElement) {
+        mountRef.current.removeChild(rendererRef.current.domElement);
       }
+      
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("keydown", handleKeyDown);
-      renderer.domElement.removeEventListener("click", handleClick);
+      
+      if (rendererRef.current?.domElement) {
+        rendererRef.current.domElement.removeEventListener("click", handleClick);
+      }
       
       if (animationIdRef.current) {
         cancelAnimationFrame(animationIdRef.current);
@@ -288,11 +328,11 @@ const HistoryVRSection: React.FC = () => {
       cancelAnimationFrame(animationIdRef.current);
     }
     
-    if (cameraRef.current) {
+    if (cameraRef.current && controlsRef.current) {
       const startPosition = cameraRef.current.position.clone();
       const targetPosition = new THREE.Vector3(0, 0, 8);
       const startTime = performance.now();
-      const duration = 1000;
+      const duration = 800;
       
       const animateCameraBack = (currentTime: number) => {
         const elapsed = currentTime - startTime;
@@ -306,15 +346,16 @@ const HistoryVRSection: React.FC = () => {
           animationIdRef.current = requestAnimationFrame(animateCameraBack);
         } else {
           setSelectedIndex(null);
-          setIsZoomed(false);
+          setShowPrintTitle(false);
           animationIdRef.current = null;
+          controlsRef.current!.reset();
         }
       };
       
       animationIdRef.current = requestAnimationFrame(animateCameraBack);
     } else {
       setSelectedIndex(null);
-      setIsZoomed(false);
+      setShowPrintTitle(false);
     }
   };
 
@@ -335,6 +376,10 @@ const HistoryVRSection: React.FC = () => {
               src={events[selectedIndex].image} 
               alt={events[selectedIndex].title}
               className={styles.zoomedImage}
+              onError={(e) => {
+                console.error("Image failed to load:", events[selectedIndex].image);
+                e.currentTarget.src = "/default/fallback-image.jpg";
+              }}
             />
             <div className={styles.zoomedContent}>
               <h2>{events[selectedIndex].title}</h2>
@@ -346,7 +391,7 @@ const HistoryVRSection: React.FC = () => {
           </motion.div>
         </div>
       ) : (
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           <motion.div
             key="info"
             className={styles.infoBox}
@@ -361,7 +406,17 @@ const HistoryVRSection: React.FC = () => {
         </AnimatePresence>
       )}
 
-      
+      {showPrintTitle && (
+        <motion.div
+          className={styles.printTitle}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.2 }}
+          transition={{ duration: 0.3 }}
+        >
+          <span>Đã chọn: {events[selectedIndex !== null ? selectedIndex : activeIndex].title}</span>
+        </motion.div>
+      )}
 
       <div className={styles.instructions}>
         <p>• Click vào hình ảnh để xem chi tiết</p>
