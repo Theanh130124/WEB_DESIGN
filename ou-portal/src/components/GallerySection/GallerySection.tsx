@@ -1,7 +1,8 @@
 import React from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { motion, Variants } from 'framer-motion';
-import './GallerySection.module.css';
+import styles from './GallerySection.module.css';
+
 
 interface GalleryImage {
   src: string;
@@ -155,12 +156,11 @@ const GallerySection: React.FC<GallerySectionProps> = ({
         
         <Row>
           <Col>
-            <motion.h2 
-              className="gallery-title"
-              variants={titleVariants}
-            >
-              {title}
-            </motion.h2>
+          <motion.h2 className={`${styles['gallery-title']} text-center`}
+          variants={itemVariants}
+        >
+          {title}
+        </motion.h2>
             <motion.div 
               className="title-underline"
               variants={titleVariants}

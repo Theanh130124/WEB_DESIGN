@@ -13,6 +13,17 @@
   color: #2BA7E2;
   text-align: center;
   margin-bottom: 16px;
+  position: relative;
+  display: block; /* Thay đổi từ inline-block thành block */
+}
+.gallery-title::after {
+  content: "";
+  display: block;
+  width: 50%; /* Chỉ 50% chiều rộng */
+  height: 3px;
+  background: #2BA7E2;
+  border-radius: 2px;
+  margin: 6px auto 40px; /* Căn giữa gạch chân và tạo khoảng cách dưới */
 }
 
 .title-underline {

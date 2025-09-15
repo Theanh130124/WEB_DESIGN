@@ -1,0 +1,348 @@
+/* AboutPage.module.css */
+.aboutPage {
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .bannerSection {
+    position: relative;
+    height: 486px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .bannerOverlay {
+    text-align: center;
+    color: white;
+  }
+  
+  .bannerTitle {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: 0.3px;
+    color: #2BA7E2;
+  }
+  
+  .schoolInfoSection {
+    padding: 60px 0;
+    background: #F9FBFD;
+  }
+  
+  .infoCard {
+    background: #2BA7E2;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    height: 100%;
+  }
+  
+  .cardIcon {
+    width: 70px;
+    height: 70px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+  }
+  
+  .cardIcon i {
+    font-size: 30px;
+    color: #2BA7E2;
+  }
+  
+  .cardTitle {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 32px;
+    letter-spacing: 0.3px;
+    margin-top: 20px;
+  }
+  
+  .cardText {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 32px;
+    letter-spacing: 0.3px;
+  }
+  
+  .statsSection {
+    padding: 60px 0;
+  }
+  
+  .statCard {
+    background: #F9FBFD;
+    border: 2px solid #DFDFDF;
+    border-radius: 10px;
+    height: 100%;
+  }
+  
+  .statIcon {
+    width: 70px;
+    height: 70px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+  }
+  
+  .statIcon i {
+    font-size: 30px;
+    color: #2BA7E2;
+  }
+  
+  .statTitle {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.3px;
+    color: #0C101A;
+  }
+  
+  .statText {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.3px;
+    color: #0C101A;
+  }
+  
+  .facilitiesSection {
+    padding: 60px 0;
+    background: #F9FBFD;
+  }
+  
+  .facilityCard {
+    background: #F9FBFD;
+    border: 2px solid #DFDFDF;
+    border-radius: 10px;
+    height: 100%;
+  }
+  
+  .facilityIcon {
+    width: 70px;
+    height: 70px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+  }
+  
+  .facilityIcon i {
+    font-size: 30px;
+    color: #2BA7E2;
+  }
+  
+  .facilityTitle {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.3px;
+    color: #0C101A;
+  }
+  
+  .facilityText {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.3px;
+    color: #0C101A;
+  }
+
+  /* Leadership */
+  .leadershipSection {
+    padding: 60px 0 40px;
+    background: #FFFFFF;
+  }
+
+  .sectionHeading {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: 0.3px;
+    color: #2BA7E2;
+    text-align: center;
+    margin-bottom: 32px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .sectionHeading::after,
+  .sectionTitle::after {
+    content: "";
+    display: block;
+    width: 50%;
+    height: 3px;
+    background: #2BA7E2;
+    border-radius: 2px;
+    margin: 6px auto 0;
+  }
+
+  .leaderCard {
+    border: 1px solid #DFDFDF;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #FFFFFF;
+    height: 100%;
+  }
+
+  .leaderImage {
+    object-fit: cover;
+    height: 220px;
+  }
+
+  .leaderName {
+    font-weight: 700;
+    font-size: 18px;
+    color: #0C101A;
+    margin-bottom: 8px;
+  }
+
+  .leaderRole {
+    color: #1D559F;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .leaderDesc {
+    font-size: 14px;
+    line-height: 22px;
+    color: #0C101A;
+  }
+
+  /* Slideshow */
+  .slideshowSection {
+    padding: 30px 0 10px;
+    text-align: center;
+    background: #F9FBFD;
+    width: 100%;
+  }
+
+  .sectionTitle {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #2BA7E2;
+    margin-bottom: 14px;
+  }
+
+  .slideWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .slideTrack {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    width: 100%;
+  }
+
+  .slide {
+    background: #fff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  }
+
+  .slideImage {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .slideNavBtn {
+    border: none;
+    background: rgba(1,147,220,0.5);
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .slideNavBtn.left { margin-left: 4px; }
+  .slideNavBtn.right { margin-right: 4px; }
+
+  /* InfoStat small cards */
+  .infoStatCard {
+    background: #F9FBFD;
+    border: 2px solid #DFDFDF;
+    border-radius: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .infoStatIcon {
+    width: 70px;
+    height: 70px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+    color: #2BA7E2;
+    font-size: 26px;
+  }
+
+  .infoStatBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 220px;
+  }
+
+  .titleIcon {
+    margin-right: 8px;
+    color: #0178B8;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .bannerTitle {
+      font-size: 20px;
+      line-height: 28px;
+    }
+    
+    .cardText, .statText, .facilityText {
+      font-size: 12px;
+      line-height: 20px;
+    }
+  }

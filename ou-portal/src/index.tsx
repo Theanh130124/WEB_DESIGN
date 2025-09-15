@@ -8,7 +8,9 @@ import {
   faBuilding, 
   faHistory, 
   faMapMarkerAlt, 
-  faTrophy 
+  faTrophy ,
+  faUniversity,
+  
 } from '@fortawesome/free-solid-svg-icons';
 import { 
   faFacebook, 
@@ -24,7 +26,8 @@ library.add(
   faTrophy,
   faFacebook, 
   faTwitter, 
-  faInstagram
+  faInstagram,
+  faUniversity
 );
 
 const root = ReactDOM.createRoot(

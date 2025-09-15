@@ -97,6 +97,7 @@
   cursor: pointer;
 }
 
+/* Thêm gạch chân cho tiêu đề Lời chúc mừng */
 .principalMessage {
   font-weight: 700;
   font-size: 30px;
@@ -104,7 +105,10 @@
   letter-spacing: 0.3px;
   color: #2BA7E2;
   margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
 }
+
 
 .principalName {
   font-weight: 700;
@@ -162,7 +166,20 @@
   letter-spacing: 0.3px;
   color: #2BA7E2;
   margin-bottom: 16px;
+  position: relative;
+  display: inline-block;
 }
+/* Gạch chân */
+.introTitle::after {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 3px;
+  background: #2BA7E2;
+  border-radius: 2px;
+  margin: 6px auto 0;
+}
+
 
 .introDescription {
   font-weight: 400;

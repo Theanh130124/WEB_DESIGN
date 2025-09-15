@@ -109,8 +109,8 @@ const Footer: React.FC<FooterProps> = ({
   website = 'https://www.hcmou.edu.vn',
   email = 'ou@ou.edu.vn',
   exploreLinks = [
-    { label: 'Lời giới thiệu', path: '/introduction' },
-    { label: 'Hình ảnh nhà trường', path: '/gallery' },
+    { label: 'Lời giới thiệu', path: '/about' },
+    { label: 'Hình ảnh nhà trường', path: '/about' },
     { label: 'Giới thiệu trường', path: '/about' }
   ],
   facultyLinks = [

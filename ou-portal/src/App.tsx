@@ -18,6 +18,7 @@ import GallerySection from './components/GallerySection/GallerySection';
 
 // Theme configuration
 import { defaultTheme, applyTheme } from './config/theme';
+import HistoryVRSection from './components/HistoryVRSection';
 function App() {
   useEffect(() => {
     // Apply default theme on app load
@@ -36,6 +37,7 @@ function App() {
         />
         <main>
           <Routes>
+            <Route path='/history' element={<HistoryVRSection/>}/>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/faculty" element={<FacultyPage />} />

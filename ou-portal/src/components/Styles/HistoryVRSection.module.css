@@ -1,0 +1,155 @@
+.historyVRSection {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .canvasContainer {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .infoBox {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    z-index: 10;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 2px solid #1a237e;
+  }
+  
+  .zoomedOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .zoomedImageContainer {
+    display: flex;
+    flex-direction: column;
+    max-width: 90%;
+    max-height: 90%;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  }
+  
+  .zoomedImage {
+    width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+  }
+  
+  .zoomedContent {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .zoomedContent h2 {
+    color: #1a237e;
+    margin-bottom: 15px;
+    font-size: 24px;
+  }
+  
+  .zoomedContent p {
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .printTitle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .exitButton {
+    background: #1a237e;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(26, 35, 126, 0.3);
+    margin-top: 15px;
+  }
+  
+  .exitButton:hover {
+    background: #283593;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(26, 35, 126, 0.4);
+  }
+  
+  .instructions {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    max-width: 300px;
+    backdrop-filter: blur(5px);
+    z-index: 15;
+  }
+  
+  .instructions p {
+    margin: 5px 0;
+  }
+  
+  @media (max-width: 768px) {
+    .infoBox, .zoomedContent {
+      width: 90%;
+      padding: 16px;
+    }
+    
+    .infoBox h2 {
+      font-size: 18px;
+    }
+    
+    .zoomedContent h2 {
+      font-size: 22px;
+    }
+    
+    .instructions {
+      bottom: 10px;
+      left: 10px;
+      font-size: 12px;
+      max-width: 200px;
+    }
+    
+    .zoomedImageContainer {
+      flex-direction: column;
+    }
+  }

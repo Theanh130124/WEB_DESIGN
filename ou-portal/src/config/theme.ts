@@ -111,12 +111,12 @@ export const defaultTheme: ThemeConfig = {
     heroBackground: 'default/themeheader.jpg',
     principalImage: 'default/GS-Nguyen-Minh-Ha.jpg',
     galleryImages: [
-      '/gallery/school-building-1.jpg',
-      '/gallery/school-building-2.jpg',
-      '/gallery/graduation-ceremony.jpg',
-      '/gallery/students-studying.jpg',
-      '/gallery/computer-lab.jpg',
-      '/gallery/classroom.jpg'
+      '/gallery/nhatruong1.jpg',
+      '/gallery/nhatruong2.jpg',
+      '/gallery/nhatruong3.jpg',
+      '/gallery/nhatruong4.jpg',
+      '/gallery/nhatruong5.jpg',
+      '/gallery/nhatruong6.jpg'
     ]
   },
   imageSizes: {
