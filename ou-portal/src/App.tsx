@@ -6,6 +6,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
+
 // Pages
 import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';

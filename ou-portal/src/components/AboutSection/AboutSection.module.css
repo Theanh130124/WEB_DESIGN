@@ -21,6 +21,48 @@
   margin-bottom: 80px;
 }
 
+.cardIconWrapper {
+  display: flex;              /* Giữ flex để căn giữa icon bên trong */
+  justify-content: center;    /* Icon nằm giữa trong vòng tròn */
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background: #FFFFFF;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 50%;
+  margin-bottom: 16px;
+  margin-left: 0;             /* Đảm bảo căn trái */
+}
+.section-title {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 38px;
+  letter-spacing: 0.3px;
+  color: #2BA7E2;
+  text-align: center;
+  margin-bottom: 16px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 100%;   /* gạch dài bằng chữ */
+  height: 3px;
+  background: #2BA7E2;
+  border-radius: 2px;
+  margin: 6px auto 0;
+}
+
+
+.cardIconWrapper svg {
+  width: 24px;
+  height: 24px;
+  color: #0178B8;
+}
+
 .videoContainer {
   height: 342px;
   width: 90%;
@@ -160,24 +202,12 @@
   flex-direction: column;
   height: 100%;
   border: none;
+  text-align: left; /* Đảm bảo nội dung căn trái */
 }
 
 .cardIcon {
-  width: 64px;
-  height: 64px;
-  background: #FFFFFF;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-}
-
-.iconInner {
-  position: relative;
-  width: 40px;
-  height: 40px;
+  font-size: 24px;
+  color: #0178B8;
 }
 
 .cardTitle {
@@ -198,31 +228,10 @@
   margin: 0;
 }
 
-/* Các styles cho icon giữ nguyên như trước */
-.facilityIcon {
-  width: 40.15px;
-  height: 41.96px;
-}
 
-.vector5 {
-  position: absolute;
-  width: 15.26px;
-  height: 16.4px;
-  left: 12.45px;
-  top: 11.59px;
-  background: #60C1F8;
-}
 
-.ellipse5 {
-  position: absolute;
-  width: 34.33px;
-  height: 34.33px;
-  left: 2.91px;
-  top: 2.81px;
-  border: 1px solid #22355D;
-  border-radius: 50%;
-  box-sizing: border-box;
-}
+
+
 
 /* Các styles khác cho icon giữ nguyên */
 

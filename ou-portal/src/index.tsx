@@ -3,6 +3,29 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { 
+  faBuilding, 
+  faHistory, 
+  faMapMarkerAlt, 
+  faTrophy 
+} from '@fortawesome/free-solid-svg-icons';
+import { 
+  faFacebook, 
+  faTwitter, 
+  faInstagram 
+} from '@fortawesome/free-brands-svg-icons';
+
+// Thêm các icon vào library
+library.add(
+  faBuilding, 
+  faHistory, 
+  faMapMarkerAlt, 
+  faTrophy,
+  faFacebook, 
+  faTwitter, 
+  faInstagram
+);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

@@ -8,3 +8,22 @@
       padding: 0 15px;
     }
   }
+
+
+  .cardIconWrapper {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #0178B8; /* Màu xanh cho icon */
+  }
+  
+  .cardIconWrapper svg {
+    width: 2em;
+    height: 2em;
+  }
+  
+  /* Hoặc nếu bạn muốn icon lớn hơn giống như trong footer */
+  .cardIcon {
+    font-size: 24px; /* Kích thước icon */
+    color: #0178B8; /* Màu sắc */
+  }
+  

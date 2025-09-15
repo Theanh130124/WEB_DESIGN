@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { motion, Variants } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBuilding, faHistory, faMapMarkerAlt, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import styles from './AboutSection.module.css';
 
 interface InfoCard {
@@ -124,71 +126,22 @@ const AboutSection: React.FC<AboutSectionProps> = ({
   principalImage = '/default/logo-default.jpg',
   infoCards = [
     {
-      icon: (
-        <div className={styles.facilityIcon}>
-          <div className={styles.iconInner}>
-            <div className={styles.vector5}></div>
-            <div className={styles.ellipse5}></div>
-            <div className={styles.ellipse6}></div>
-            <div className={styles.ellipse10}></div>
-            <div className={styles.ellipse8}></div>
-            <div className={styles.ellipse7}></div>
-            <div className={styles.ellipse11}></div>
-            <div className={styles.ellipse9}></div>
-          </div>
-        </div>
-      ),
+      icon: <FontAwesomeIcon icon={faBuilding} className={styles.cardIcon} />,
       title: 'Cơ sở vật chất',
       description: 'Phòng học hiện đại, thư viện với 50.000 đầu sách, phòng thí nghiệm, phòng máy tính, khu thể thao...'
     },
     {
-      icon: (
-        <div className={styles.historyIcon}>
-          <div className={styles.iconInner}>
-            <div className={styles.historyVector}></div>
-            <div className={styles.historyLine1}></div>
-            <div className={styles.historyLine2}></div>
-            <div className={styles.historyLine3}></div>
-            <div className={styles.historyLine4}></div>
-            <div className={styles.historyEllipse}></div>
-            <div className={styles.historyStar}></div>
-          </div>
-        </div>
-      ),
+      icon: <FontAwesomeIcon icon={faHistory} className={styles.cardIcon} />,
       title: 'Lịch sử',
       description: 'Thành lập ngày 15/06/1990...'
     },
     {
-      icon: (
-        <div className={styles.addressIcon}>
-          <div className={styles.iconInner}>
-            <div className={styles.addressSubtract1}></div>
-            <div className={styles.addressEllipse12}></div>
-            <div className={styles.addressEllipse13}></div>
-            <div className={styles.addressEllipse14}></div>
-            <div className={styles.addressSubtract2}></div>
-            <div className={styles.addressEllipse15}></div>
-            <div className={styles.addressEllipse16}></div>
-            <div className={styles.addressSubtract3}></div>
-            <div className={styles.addressEllipse17}></div>
-            <div className={styles.addressEllipse18}></div>
-          </div>
-        </div>
-      ),
+      icon: <FontAwesomeIcon icon={faMapMarkerAlt} className={styles.cardIcon} />,
       title: 'Địa chỉ',
       description: 'Địa chỉ 1: 97 Võ Văn Tần, P.Xuân Hòa, TP Hồ Chí Minh.'
     },
     {
-      icon: (
-        <div className={styles.achievementIcon}>
-          <div className={styles.iconInner}>
-            <div className={styles.achievementRectangle}></div>
-            <div className={styles.achievementStar1}></div>
-            <div className={styles.achievementEllipse}></div>
-            <div className={styles.achievementStar2}></div>
-          </div>
-        </div>
-      ),
+      icon: <FontAwesomeIcon icon={faTrophy} className={styles.cardIcon} />,
       title: 'Thành tựu',
       description: 'Top 1201-1500 Thế giới theo Times Higher Education năm 2025'
     }
@@ -236,15 +189,15 @@ const AboutSection: React.FC<AboutSectionProps> = ({
           </Col>
           <Col lg={6}>
             <motion.div 
-              className={styles.principalContent}
+              className={styles.principalContent }
               variants={textVariants}
             >
-              <motion.h2 
-                className={styles.principalMessage}
-                variants={itemVariants}
-              >
-                {principalMessage}
-              </motion.h2>
+            <motion.h2 
+              className={`${styles.sectionTitle} ${styles.principalMessage}`}
+              variants={itemVariants}
+            >
+              {principalMessage}
+            </motion.h2>
               <motion.h3 
                 className={styles.principalName}
                 variants={itemVariants}
@@ -308,15 +261,15 @@ const AboutSection: React.FC<AboutSectionProps> = ({
                     variants={cardVariants}
                     whileHover="hover"
                   >
-                    <Card className={styles.infoCard}>
-                      <Card.Body>
-                        <div className={styles.cardIcon}>
-                          {card.icon}
-                        </div>
-                        <Card.Title className={styles.cardTitle}>{card.title}</Card.Title>
-                        <Card.Text className={styles.cardDescription}>{card.description}</Card.Text>
-                      </Card.Body>
-                    </Card>
+                  <Card className={styles.infoCard}>
+                    <Card.Body>
+                      <div className={styles.cardIconWrapper}>
+                        {card.icon}
+                      </div>
+                      <Card.Title className={styles.cardTitle}>{card.title}</Card.Title>
+                      <Card.Text className={styles.cardDescription}>{card.description}</Card.Text>
+                    </Card.Body>
+                  </Card>
                   </motion.div>
                 </Col>
               ))}

@@ -151,7 +151,8 @@ const GallerySection: React.FC<GallerySectionProps> = ({
       viewport={{ once: true, margin: "-50px" }}
       variants={containerVariants}
     >
-      <Container>
+      <Container className='mt-4 mb-4'>
+        
         <Row>
           <Col>
             <motion.h2 
