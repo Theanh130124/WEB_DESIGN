@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container, Row, Col, Button } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import styles from './Header.module.css';
 
 interface HeaderProps {
@@ -30,24 +30,22 @@ const Header: React.FC<HeaderProps> = ({
     { label: 'Về chúng tôi', path: '/about' },
     { label: 'Giảng viên', path: '/faculty' },
     { label: 'Tuyển sinh', path: '/admissions' },
-    { label: 'Liên hệ', path: '/contact' },
     { label: 'Triển lãm lịch sử', path: '/history' }
   ],
   coreValuesTitle = 'GIÁ TRỊ CỐT LÕI',
   coreValuesText = 'Mở rộng tri thức, Gắn kết thực tiễn, Phục vụ cộng đồng, Chuyên nghiệp, hiệu quả, sáng tạo và thân thiện',
   buttonText = 'Liên hệ',
-  buttonLink = '/contact',
+  buttonLink = '/about',
   overlayOpacity = 0.7
 }) => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isNavExpanded, setIsNavExpanded] = useState(false); // Thêm state để theo dõi trạng thái navbar
   
   useEffect(() => {
-    // Hiệu ứng load trang
     setIsLoaded(true);
     
-    // Hiệu ứng scroll
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -58,6 +56,11 @@ const Header: React.FC<HeaderProps> = ({
   
   // Tách coreValuesText thành các từ để animate riêng lẻ
   const coreValuesWords = coreValuesText.split(' ');
+  
+  // Hàm xử lý toggle navbar
+  const handleNavToggle = () => {
+    setIsNavExpanded(!isNavExpanded);
+  };
   
   return (
     <div className={styles.headerSection}>
@@ -80,7 +83,7 @@ const Header: React.FC<HeaderProps> = ({
         transition={{ duration: 0.5 }}
       >
         <Container>
-          <Navbar expand="lg" className={styles.headerNavbar}>
+          <Navbar expand="lg" className={styles.headerNavbar} expanded={isNavExpanded}>
             <Navbar.Brand className={styles.headerBrand}>
               <motion.img 
                 src={logo} 
@@ -95,7 +98,11 @@ const Header: React.FC<HeaderProps> = ({
               </div>
             </Navbar.Brand>
             
-            <Navbar.Toggle aria-controls="basic-navbar-nav" className={styles.headerNavToggle} />
+            <Navbar.Toggle 
+              aria-controls="basic-navbar-nav" 
+              className={styles.headerNavToggle}
+              onClick={handleNavToggle} // Thêm sự kiện onClick
+            />
             
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className={`ms-auto ${styles.headerNavLinks}`}>
@@ -107,6 +114,7 @@ const Header: React.FC<HeaderProps> = ({
                       as={Link}
                       to={item.path}
                       className={`${styles.headerNavLink} ${isActive ? styles.active : ''}`}
+                      onClick={() => setIsNavExpanded(false)} // Đóng navbar khi click vào mục
                     >
                       <motion.span
                         initial={{ opacity: 0, y: -10 }}
@@ -136,7 +144,8 @@ const Header: React.FC<HeaderProps> = ({
       </motion.div>
       
       {/* Header Content với hiệu ứng typewriter và từ xuất hiện tuần tự */}
-      <Container className={styles.headerContentContainer}>
+      {/* Thêm class điều kiện dựa trên trạng thái navbar */}
+      <Container className={`${styles.headerContentContainer} ${isNavExpanded ? styles.navExpanded : ''}`}>
         <Row>
           <Col lg={12}>
             <div className={styles.coreValuesSection}>

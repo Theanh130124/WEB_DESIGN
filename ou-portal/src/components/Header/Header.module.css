@@ -14,6 +14,7 @@
   background-size: cover;
   background-position: center;
   z-index: -1;
+  
 }
 
 .headerNavigation {
@@ -21,6 +22,8 @@
   width: 100%;
   height: 88px;
   background: transparent;
+  transition: all 0.3s ease;
+  z-index: 1000;
 }
 
 .headerNavbar {
@@ -83,6 +86,7 @@
 .headerNavLinks {
   gap: 32px;
 }
+
 .headerNavLink {
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
@@ -147,6 +151,7 @@
   color: #FFFFFF !important;
   font-weight: 700 !important;
 }
+
 /* Hiệu ứng khi hover vào các mục không active */
 .headerNavLink:not(.active):hover {
   color: #FFFFFF !important;
@@ -161,6 +166,7 @@
   border-radius: 4px;
   margin-top: 8px;
 }
+
 .navIndicator {
   width: 16px;
   height: 2px;
@@ -175,6 +181,7 @@
   height: calc(528px - 88px);
   display: flex;
   align-items: center;
+  transition: margin-top 0.3s ease; /* Thêm transition cho mượt mà */
 }
 
 .coreValuesSection {
@@ -292,6 +299,7 @@
     font-size: 13px;
   }
 }
+
 /* Hiệu ứng cho navigation khi scroll */
 .headerNavigation.scrolled {
   background: rgba(0, 0, 0, 0.8);
@@ -315,3 +323,39 @@
   transition: all 0.3s ease !important;
 }
 
+/* Mobile - Quan trọng: Điều chỉnh khi navbar mở */
+@media (max-width: 991.98px) {
+  .headerContentContainer.navExpanded {
+    margin-top: 260px; /* Đẩy nội dung xuống khi navbar mở */
+  }
+  
+  .headerSection {
+    height: auto;  /* để nội dung co giãn */
+    min-height: 528px; /* Giữ chiều cao tối thiểu */
+    padding-bottom: 20px; /* thêm khoảng cách để không bị che */
+  }
+
+  .headerContentContainer {
+    text-align: center; /* căn giữa cho dễ nhìn */
+    padding: 15px;
+    height: auto;
+    min-height: calc(528px - 88px);
+  }
+
+  .coreValuesSection {
+    font-size: 14px; /* thu nhỏ chữ cho vừa màn hình */
+    line-height: 1.4;
+  }
+
+  .headerContactButton {
+    margin-top: 15px;
+    width: 100%; /* nút full width trên mobile */
+  }
+}
+
+/* Điều chỉnh cho màn hình rất nhỏ */
+@media (max-width: 400px) {
+  .headerContentContainer.navExpanded {
+    margin-top: 250px; /* Đẩy nội dung xuống nhiều hơn trên màn hình nhỏ */
+  }
+}

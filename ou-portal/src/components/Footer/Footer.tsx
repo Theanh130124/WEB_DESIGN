@@ -118,7 +118,7 @@ const Footer: React.FC<FooterProps> = ({
     { label: 'Hướng dẫn tuyển sinh', path: '/admissions-guide' },
     { label: 'Địa chỉ', path: '/address' },
     { label: 'Cơ sở vật chất', path: '/facilities' },
-    { label: 'Liên hệ', path: '/contact' }
+    { label: 'Liên hệ', path: '/about' }
   ],
   socialMedia = [
     { name: 'Facebook', icon: <FontAwesomeIcon icon={faFacebook} className={styles.socialIcon} />, url: '#' },

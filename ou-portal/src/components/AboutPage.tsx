@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,11 +18,30 @@ const InfoStat: React.FC<{ icon: React.ReactNode; title: string; text: React.Rea
 );
 
 const Slideshow: React.FC = () => {
-  // build list nhatruong1..8 (if some missing, browser just 404; ensure you have files)
   const allImages = Array.from({ length: 8 }).map((_, i) => `/default/nhatruong${i + 1}.jpg`);
   const [start, setStart] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(6); // Default desktop view
+  
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setVisibleCount(3); // 3 slides on mobile
+      } else {
+        setVisibleCount(6); // 6 slides on desktop
+      }
+    };
+    
+    handleResize(); // Set initial value
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
   const length = allImages.length;
-  const visible = Array.from({ length: 6 }).map((_, offset) => allImages[(start + offset) % length]);
+  const visible = Array.from({ length: visibleCount }).map((_, offset) => 
+    allImages[(start + offset) % length]
+  );
+  
   const prev = () => setStart((s) => (s - 1 + length) % length);
   const next = () => setStart((s) => (s + 1) % length);
 
@@ -31,10 +50,10 @@ const Slideshow: React.FC = () => {
       <button aria-label="Prev" className={`${styles.slideNavBtn} ${styles.left}`} onClick={prev}>
         <FontAwesomeIcon icon={faChevronLeft} />
       </button>
-      <div className={styles.slideTrack}>
+      <div className={styles.slideTrack} style={{ gridTemplateColumns: `repeat(${visibleCount}, 1fr)` }}>
         {visible.map((src, i) => (
           <motion.div
-            key={src}
+            key={`${src}-${i}`}
             className={styles.slide}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -59,6 +78,7 @@ const AboutPage: React.FC = () => {
         <div className={styles.sectionTitle}>CƠ SỞ VẬT CHẤT HIỆN ĐẠI , ĐÁP ỨNG MỌI NHU CẦU</div>
         <Slideshow />
       </Container>
+      
       {/* Banner Section */}
       <div
         className={styles.bannerSection}
@@ -128,7 +148,6 @@ const AboutPage: React.FC = () => {
         </Row>
       </Container>
 
-    
       {/* Leadership Section */}
       <Container className={styles.leadershipSection}>
         <div className={styles.sectionHeading}>BAN GIÁM HIỆU ĐẠI HỌC MỞ TP.HỒ CHÍ MINH</div>
@@ -189,7 +208,6 @@ const AboutPage: React.FC = () => {
           </Col>
         </Row>
       </Container>
-
     </div>
   );
 };
