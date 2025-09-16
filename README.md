@@ -6,7 +6,7 @@ https://redirect.zalo.me/v3/verifyv2/pc?token=Oc3nnTfsKGPX3VRDtnrIQMCEzhpS7b1fPG
 ## Giới thiệu
 Một dự án thiết kế WEB WHITE LABEL. Mục tiêu là xây dựng giao diện web đẹp, responsive và dễ sử dụng về chủ đề kỉ niệm 35 năm thành lập của Trường đại học Mở thành phố Hồ Chí Minh.
 
-Trang demo trực tuyến: [web‑desgin‑stacklifo.vercel.app](https://web-desgin-stacklifo.vercel.app) :contentReference[oaicite:2]{index=2}  
+Trang demo trực tuyến: [web‑desgin‑stacklifo.vercel.app](https://web-desgin-stacklifo.vercel.app)
 
 ---
 
