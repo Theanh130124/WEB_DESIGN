@@ -62,7 +62,7 @@
 .itemTitle {
   font-size: 1.6rem;
   font-weight: 700;
-  color: #1f73f0;
+  color: var(--primary-color);
   margin-bottom: 15px;
   position: relative;
   padding-left: 20px;

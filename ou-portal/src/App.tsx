@@ -20,10 +20,13 @@ import GallerySection from './components/GallerySection/GallerySection';
 import { defaultTheme, applyTheme } from './config/theme';
 import HistoryVRSection from './components/HistoryVRSection';
 function App() {
-  useEffect(() => {
-    // Apply default theme on app load
-    applyTheme(defaultTheme);
-  }, []);
+
+
+//để chạy theme default
+useEffect(() => {
+  applyTheme(defaultTheme);
+}, []);
+
 
   return (
     <Router>

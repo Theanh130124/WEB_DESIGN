@@ -229,8 +229,8 @@ export const defaultTheme: ThemeConfig = {
 export const exampleThemes: Record<string, Partial<ThemeConfig>> = {
   'university-red': {
     colors: {
-      primary: '#DC2626',
-      secondary: '#B91C1C',
+      primary: '#2BA7E2',
+      secondary: '#20b3d8ff',
       accent: '#F59E0B',
       background: '#F9FBFD',
       text: '#0C101A',

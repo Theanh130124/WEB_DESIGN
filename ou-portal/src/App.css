@@ -115,7 +115,7 @@ img {
   font-size: 24px;
   line-height: 38px;
   letter-spacing: 0.3px;
-  color: #2BA7E2;
+  color: var(--primary-color);
   text-align: center;
   margin-bottom: 16px;
   position: relative;
@@ -127,7 +127,7 @@ img {
   display: block;
   width: 80px;       /* độ dài gạch */
   height: 3px;       /* độ dày gạch */
-  background: #2BA7E2;
+  color: var(--primary-color);
   border-radius: 2px;
   margin: 6px auto 0; /* canh giữa dưới chữ */
 }

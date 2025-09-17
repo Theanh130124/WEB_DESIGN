@@ -33,14 +33,13 @@
   margin-bottom: 16px;
   margin-left: 0;             /* Đảm bảo căn trái */
 }
-.section-title {
+.sectionTitle {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-size: 24px;
   line-height: 38px;
   letter-spacing: 0.3px;
-  color: #2BA7E2;
-  text-align: center;
+  color: var(--primary-color);
   margin-bottom: 16px;
   position: relative;
   display: inline-block;
@@ -51,7 +50,7 @@
   display: block;
   width: 100%;   /* gạch dài bằng chữ */
   height: 3px;
-  background: #2BA7E2;
+  color: var(--primary-color);
   border-radius: 2px;
   margin: 6px auto 0;
 }
@@ -60,7 +59,7 @@
 .cardIconWrapper svg {
   width: 24px;
   height: 24px;
-  color: #0178B8;
+  color: var(--primary-color);
 }
 
 .videoContainer {
@@ -103,7 +102,7 @@
   font-size: 30px;
   line-height: 48px;
   letter-spacing: 0.3px;
-  color: #2BA7E2;
+  color: var(--primary-color);
   margin-bottom: 20px;
   position: relative;
   display: inline-block;
@@ -115,7 +114,7 @@
   font-size: 24px;
   line-height: 32px;
   letter-spacing: 0.3px;
-  color: #2BA7E2;
+  color: var(--primary-color);
   margin-bottom: 24px;
 }
 
@@ -132,7 +131,7 @@
   display: inline-block;
   width: 184px;
   height: 40px;
-  background: #0193DC;
+  background: var(--primary-color);
   border-radius: 4px;
   font-weight: 700;
   font-size: 14px;
@@ -145,7 +144,7 @@
 }
 
 .principalButton:hover {
-  background: #0178B8;
+  background: var(--primary-color);
 }
 
 /* School Introduction Section */
@@ -164,7 +163,7 @@
   font-size: 24px;
   line-height: 38px;
   letter-spacing: 0.3px;
-  color: #2BA7E2;
+  color: var(--primary-color);
   margin-bottom: 16px;
   position: relative;
   display: inline-block;
@@ -175,7 +174,7 @@
   display: block;
   width: 50%;
   height: 3px;
-  background: #2BA7E2;
+  background: var(--primary-color);
   border-radius: 2px;
   margin: 6px auto 0;
 }
@@ -194,7 +193,7 @@
   display: inline-block;
   width: 184px;
   height: 40px;
-  background: #0193DC;
+  background: var(--primary-color);
   border-radius: 4px;
   font-weight: 700;
   font-size: 14px;
@@ -207,7 +206,7 @@
 }
 
 .introButton:hover {
-  background: #0178B8;
+  background: var(--secondary-color);
 }
 
 .infoCard {
@@ -224,7 +223,7 @@
 
 .cardIcon {
   font-size: 24px;
-  color: #0178B8;
+  color: var(--primary-color);
 }
 
 .cardTitle {

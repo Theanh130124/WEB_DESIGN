@@ -4,6 +4,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Styles/HistoryVRSection.module.css";
 import { Col, Container, Row } from "react-bootstrap";
+import Anniversary35Section from "./Anniversary35Section";
 
 
 interface HistoryEvent {
@@ -76,6 +77,7 @@ useEffect(() => {
   useEffect(() => {
     if (!mountRef.current) return;
 
+    //Tao three 3d
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
@@ -450,7 +452,10 @@ useEffect(() => {
           </div>
         </Col>
       </Row>
+      <Anniversary35Section />
     </Container>
+
+    
   );
   
 };
