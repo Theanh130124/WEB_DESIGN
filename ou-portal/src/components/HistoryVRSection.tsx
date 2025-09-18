@@ -377,7 +377,7 @@ useEffect(() => {
           {/* Sử dụng styles.mainTitle thay vì class thông thường */}
           <h1 className={styles.mainTitle}>
             Triển lãm nhìn lại 35 năm hình thành và phát triển <br />
-            Đại học Mở TP.HCM
+            Trường Đại học Mở TP.HCM
           </h1>
         </Col>
       </Row>
